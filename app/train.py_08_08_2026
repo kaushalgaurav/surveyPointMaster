@@ -1,0 +1,490 @@
+import os
+import json
+import torch
+import numpy as np
+import re
+import hashlib
+import openai
+from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer, util
+from app.models.question_model import load_questions_from_db
+from app.logger import get_logger
+
+# ---------------------------
+# 1. Configuration & Setup
+# ---------------------------
+logger = get_logger()
+load_dotenv()
+
+# --- Directory Helper ---
+def ensure_directory_exists(file_path):
+    """Creates the directory for a given file path if it doesn't exist."""
+    if not file_path: return
+    directory = os.path.dirname(file_path)
+    if directory and not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+        logger.info(f"Created directory: {directory}")
+
+# --- Define Paths (Force all into 'data/' folder) ---
+DATA_DIR = os.path.join(os.getcwd(), "data")
+
+# Get filenames from env or defaults
+_q_embed_name = os.getenv("EMBEDDING_FILE", "question_embeddings.npy")
+_q_hash_name = os.getenv("EMBED_HASH_FILE", "embeddings_hash.txt")
+_t_embed_name = os.getenv("TEMPLATE_EMBED_FILE", "template_embeddings.npy")
+_t_hash_name = os.getenv("TEMPLATE_EMBED_HASH_FILE", "template_embeddings_hash.txt")
+
+# Construct full paths inside DATA_DIR
+EMBED_FILE = os.path.join(DATA_DIR, os.path.basename(_q_embed_name))
+EMBED_HASH_FILE = os.path.join(DATA_DIR, os.path.basename(_q_hash_name))
+TEMPLATE_EMBED_FILE = os.path.join(DATA_DIR, os.path.basename(_t_embed_name))
+TEMPLATE_EMBED_HASH_FILE = os.path.join(DATA_DIR, os.path.basename(_t_hash_name))
+
+EMBED_MODEL_NAME = os.getenv("EMBEDDING_MODEL")
+OPENAI_PRIVATE_KEY = os.getenv("OPENAI_PRIVATE_KEY")
+
+# --- Validations ---
+if not EMBED_MODEL_NAME:
+    raise ValueError("Please set EMBEDDING_MODEL in your .env file")
+
+if OPENAI_PRIVATE_KEY:
+    openai.api_key = OPENAI_PRIVATE_KEY
+    logger.info("OpenAI API key loaded")
+else:
+    logger.warning("OPENAI_PRIVATE_KEY not set. AI generation features will be disabled.")
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+logger.info(f"Using device: {device}")
+logger.info(f"📂 Storage path: {DATA_DIR}")
+
+# ---------------------------
+# 2. Mappings & Constants
+# ---------------------------
+normalize_qtype = {
+    "radio": "radio",
+    "number": "number",
+    "stextbox": "stextbox",
+    "statement": "statement",
+    "date": "date",
+    "ltextbox": "stextbox",
+    "phnumber": "phnumber",
+    "email": "email",
+    "mcq": "mcq",
+    "radio yesno ": "radio yesno ",
+    "rating": "rating",
+    "consent": "consent",
+    "csat": "rating",
+    "curtdate": "curtdate",
+    "radiomatrix": "radio",
+    "nps": "nps",
+    "radioR25_1": "radior25_1",
+    "radio crop ": "radio crop ",
+    "stextbbox": "stextbbox",
+    "radioG17_1": "radiog17_1",
+    "text": "text",
+    "sadio": "statement",
+    "numnber": "number",
+    "ltext": "ltext",
+    "phnumbe": "phnumber",
+    "hidden": "hidden",
+    "eadio": "eadio",
+    "radi": "radi",
+    "raadio": "radio",
+    "pictureChoice": "picturechoice",
+    "dropdown": "dropdown",
+    "dropdownmatrix": "dropdownmatrix",
+    "radiomatrixQ9": "radio",
+    "file": "file",
+    "numbers": "numbers",
+    "phnumbet": "phnumber",
+    "ststextboxext": "stextbox",
+}
+
+PROMPT_QTYPE_MAP = {
+    "multiple choice": ["mcq", "picturechoice"],
+    "mcq": ["mcq"],
+    "radio": ["radio"],
+    "choose one": ["radio"],
+    "select one": ["radio"],
+    "yes no": ["radio"],
+    "true false": ["radio"],
+    "option based": ["radio", "dropdown"],
+    "rating": ["rating"],
+    "rate": ["rating"],
+    "scale": ["rating", "nps"],
+    "satisfaction": ["rating", "csat"],
+    "feedback score": ["rating", "csat"],
+    "net promoter": ["nps"],
+    "number": ["number", "numbers"],
+    "numeric": ["number"],
+    "count": ["number"],
+    "how many": ["number"],
+    "quantity": ["number"],
+    "date": ["date", "curtdate"],
+    "when": ["date"],
+    "dob": ["date"],
+    "birth": ["date"],
+    "text": ["stextbox", "text", "ltext"],
+    "short answer": ["stextbox"],
+    "long answer": ["ltextbox", "ltext"],
+    "explain": ["ltextbox"],
+    "describe": ["ltextbox"],
+    "open ended": ["stextbox", "ltextbox"],
+    "phone": ["phnumber"],
+    "mobile": ["phnumber"],
+    "contact number": ["phnumber"],
+    "email": ["email"],
+    "email address": ["email"],
+    "consent": ["consent"],
+    "agreement": ["consent"],
+    "accept": ["consent"],
+    "permission": ["consent"],
+    "upload": ["file"],
+    "document": ["file"],
+    "photo": ["file"],
+    "image": ["picturechoice"],
+    "matrix": ["radiomatrix", "dropdownmatrix"],
+    "grid": ["radiomatrix"],
+    "information": ["statement"],
+    "instruction": ["statement"],
+    "statement": ["statement"],
+    "note": ["statement"],
+    "hidden": ["hidden"],
+    "system": ["hidden"]
+}
+
+# ---------------------------
+# 3. Helper Functions
+# ---------------------------
+def clean_text(text: str) -> str:
+    if not text:
+        return ""
+    text = re.sub(r'(\w)\s{2,}(\w)', r'\1\2', text)
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
+
+def clean_ans_json(ans_json):
+    if not ans_json:
+        return ans_json
+    for lang, data in ans_json.items():
+        if "answer" in data:
+            data["answer"] = [clean_text(a) for a in data["answer"]]
+    return ans_json
+
+def compute_dataset_hash(data_list, keys):
+    hasher = hashlib.md5()
+    for item in data_list:
+        key_str = "|".join([str(item.get(k, "")) for k in keys])
+        hasher.update(key_str.encode("utf-8"))
+    return hasher.hexdigest()
+
+# ---------------------------
+# 4. Load Data & Initialize Model
+# ---------------------------
+logger.info("Loading questions from DB...")
+sector_data = load_questions_from_db()
+
+questions_list = []
+template_list = []
+
+for sector, templates in sector_data.items():
+    for template_id, tpl in templates.items():
+        template_list.append({
+            "sector": sector,
+            "template_id": template_id,
+            "template_title": tpl.get("template_title", ""),
+            "description": tpl.get("template_description", "")
+        })
+
+        for q in tpl["questions"]:
+            raw_text = " ".join([str(v) for v in q["q_title_json"].values() if v])
+            questions_list.append({
+                "sector": sector,
+                "template_id": template_id,
+                "qid": q.get("qid"),
+                "qtype": q.get("qtype", ""),
+                "question": clean_text(raw_text),
+                "ans_json_data": q.get("ans_json_data", {})
+            })
+
+embed_model = SentenceTransformer(EMBED_MODEL_NAME, device=device)
+logger.info(f"Loaded embedding model: {EMBED_MODEL_NAME}")
+
+# ---------------------------
+# 5. Embedding Generation & Caching
+# ---------------------------
+
+# --- A. Question Embeddings ---
+q_hash = compute_dataset_hash(questions_list, ["sector", "qid", "question", "qtype"])
+stored_q_hash = None
+
+ensure_directory_exists(EMBED_HASH_FILE)
+if os.path.exists(EMBED_HASH_FILE):
+    with open(EMBED_HASH_FILE, "r") as f:
+        stored_q_hash = f.read().strip()
+
+if (not os.path.exists(EMBED_FILE)) or (q_hash != stored_q_hash):
+    logger.info("Question dataset changed — regenerating question embeddings...")
+    texts = [f"{q['sector']} {q['question']} {q['qtype']}" for q in questions_list]
+    
+    question_embeddings = embed_model.encode(texts, convert_to_tensor=True, batch_size=32, show_progress_bar=True)
+    
+    ensure_directory_exists(EMBED_FILE)
+    np.save(EMBED_FILE, question_embeddings.cpu().numpy())
+    with open(EMBED_HASH_FILE, "w") as f:
+        f.write(q_hash)
+    logger.info(f"Saved question embeddings to {EMBED_FILE}")
+else:
+    logger.info("Using cached question embeddings.")
+    question_embeddings = torch.tensor(np.load(EMBED_FILE), dtype=torch.float).to(device)
+
+
+# --- B. Template Embeddings ---
+t_hash = compute_dataset_hash(template_list, ["sector", "template_id", "description"])
+stored_t_hash = None
+
+ensure_directory_exists(TEMPLATE_EMBED_HASH_FILE)
+if os.path.exists(TEMPLATE_EMBED_HASH_FILE):
+    with open(TEMPLATE_EMBED_HASH_FILE, "r") as f:
+        stored_t_hash = f.read().strip()
+
+# Check if regeneration is needed
+if (not os.path.exists(TEMPLATE_EMBED_FILE)) or (t_hash != stored_t_hash):
+    logger.info("Template dataset changed - regenerating template embeddings...")
+    t_texts = [f"{t['sector']} {t['template_title']} {t['description']}" for t in template_list]
+    
+    if t_texts:
+        template_embeddings = embed_model.encode(t_texts, convert_to_tensor=True, batch_size=32, show_progress_bar=True)
+        
+        ensure_directory_exists(TEMPLATE_EMBED_FILE)
+        np.save(TEMPLATE_EMBED_FILE, template_embeddings.cpu().numpy())
+        with open(TEMPLATE_EMBED_HASH_FILE, "w") as f:
+            f.write(t_hash)
+        logger.info(f"Saved template embeddings to {TEMPLATE_EMBED_FILE}")
+    else:
+        template_embeddings = torch.tensor([]).to(device)
+else:
+    logger.info("Using cached template embeddings.")
+    if os.path.exists(TEMPLATE_EMBED_FILE):
+        template_embeddings = torch.tensor(np.load(TEMPLATE_EMBED_FILE), dtype=torch.float).to(device)
+    else:
+        template_embeddings = torch.tensor([]).to(device)
+
+
+# ---------------------------
+# 6. Core Logic Functions
+# ---------------------------
+
+def deduplicate_questions(questions, similarity_threshold: float = 0.85):
+    final_questions = []
+    used_qids = set()
+    used_texts = set()
+    used_embeddings = []
+
+    for q in questions:
+        qid = q.get("qid")
+        text = " ".join(q.get("question", "").lower().split())
+        emb = q.get("embedding")
+        if emb is None: continue
+
+        if qid in used_qids: continue
+        if text in used_texts: continue
+
+        is_duplicate = False
+        if len(used_embeddings) > 0:
+            used_emb_tensor = torch.stack(used_embeddings)
+            sim_scores = util.cos_sim(emb, used_emb_tensor)
+            if torch.max(sim_scores) >= similarity_threshold:
+                is_duplicate = True
+        
+        if is_duplicate: continue
+
+        final_questions.append(q)
+        used_qids.add(qid)
+        used_texts.add(text)
+        used_embeddings.append(emb)
+
+    return final_questions
+
+def select_best_template(sector: str, description: str):
+    if len(template_list) == 0: return None
+
+    candidates = [
+        (i, t) for i, t in enumerate(template_list)
+        if t["sector"].lower() == sector.lower()
+    ]
+    if not candidates: return None
+
+    query = f"{sector} {description}"
+    query_emb = embed_model.encode(query, convert_to_tensor=True)
+
+    scored = []
+    for i, tpl in candidates:
+        # Safety check for index
+        if i < len(template_embeddings):
+            score = util.cos_sim(query_emb, template_embeddings[i]).item()
+            scored.append((tpl, score))
+
+    scored.sort(key=lambda x: x[1], reverse=True)
+    if not scored: return None
+
+    best_tpl, score = scored[0]
+    if score < 0.25: return None
+
+    logger.info(f"Template selected | sector={sector} | title={best_tpl['template_title']} | score={score:.2f}")
+    return best_tpl
+
+def get_questions(sector: str, description: str, n: int, reference=None):
+    reference = reference or []
+    best_template = select_best_template(sector, description)
+    template_id = best_template["template_id"] if best_template else None
+
+    # Search
+    query = f"{sector} {description} {' '.join(reference)}"
+    query_embedding = embed_model.encode(query, convert_to_tensor=True)
+    scores = util.cos_sim(query_embedding, question_embeddings)[0]
+
+    candidates = []
+    for i, q in enumerate(questions_list):
+        if q["sector"].lower() != sector.lower(): continue
+        # Soft filter: prioritize template if found
+        if template_id and q["template_id"] != template_id: continue
+
+        q_copy = q.copy()
+        q_copy["embedding"] = question_embeddings[i]
+        candidates.append((scores[i].item(), q_copy))
+
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    raw_questions = [q for _, q in candidates]
+    
+    unique_questions = deduplicate_questions(raw_questions, similarity_threshold=0.85)
+    top_questions = unique_questions[:n]
+
+    # Optional: OpenAI Fallback logic here if needed
+
+    return top_questions[:n]
+
+# ---------------------------
+# 7. OpenAI & Formatting Utils
+# ---------------------------
+
+def map_to_defined_qtype(raw_qtype: str):
+    if not raw_qtype: return "stextbox"
+    qtype_lower = raw_qtype.strip().lower()
+    for key, mapped_types in PROMPT_QTYPE_MAP.items():
+        if key in qtype_lower: return mapped_types[0]
+    return normalize_qtype.get(qtype_lower, "stextbox")
+
+def detect_qtype_from_options(options):
+    if not options: return None
+    if len(options) == 2: return "radio"
+    elif 3 <= len(options) <= 6: return "mcq"
+    else: return "dropdown"
+
+def format_ans_json_data(options, language="english"):
+    if not options: return {}
+    return {
+        language: {
+            "answer": [f"{i+1}|{opt}" for i, opt in enumerate(options)]
+        }
+    }
+
+def normalize_openai_question(q: dict):
+    question_text = q.get("question", "").strip()
+    raw_qtype = q.get("qtype", "")
+    raw_ans = q.get("ans_json_data", {})
+
+    options = []
+    if isinstance(raw_ans, dict):
+        options = raw_ans.get("options", [])
+    elif isinstance(raw_ans, list):
+        options = raw_ans
+
+    detected_qtype = detect_qtype_from_options(options)
+    final_qtype = detected_qtype if detected_qtype else map_to_defined_qtype(raw_qtype)
+
+    return {
+        "question": question_text,
+        "qtype": final_qtype,
+        "ans_json_data": format_ans_json_data(options)
+    }
+
+def fetch_questions_openai(sector, description, n, template_title="", template_desc="", language="English"):
+    if not openai.api_key: return []
+
+    prompt = f"""
+    You are an expert survey question generator.
+    Sector: {sector}
+    User Description: {description}
+    Context: {template_title} - {template_desc}
+    Language: {language}
+
+    Rules:
+    - Generate EXACTLY {n} questions.
+    - Output strictly valid JSON list.
+    - Fields: "question", "qtype", "options" (list of strings).
+    - If Language is not English, translate questions/options accordingly.
+    """
+
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You generate structured survey questions in JSON."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7
+        )
+        content = response.choices[0].message.content
+        data = json.loads(content)
+        return [normalize_openai_question(q) for q in data]
+    except Exception as e:
+        logger.error(f"OpenAI generation failed: {e}")
+        return []
+
+# ---------------------------
+# 8. Response Builder
+# ---------------------------
+def build_response(section_code: str, questions, languages=None):
+    data = []
+
+    if not languages:
+        languages = ["english"]
+
+    for q in questions:
+        # --------------------
+        # 1. Question language object
+        # --------------------
+        question_obj = {}
+
+        if isinstance(q.get("question"), dict):
+            # GPT already returned multi-language
+            for lang in languages:
+                if lang in q["question"]:
+                    question_obj[lang] = q["question"][lang]
+        else:
+            # Single question → copy into all languages
+            for lang in languages:
+                question_obj[lang] = q["question"]
+
+        # --------------------
+        # 2. Answer JSON safety
+        # --------------------
+        ans_data = q.get("ans_json_data")
+
+        if not ans_data or not isinstance(ans_data, dict):
+            ans_data = None
+
+        payload = {
+            "question": question_obj,   # ✅ FIXED
+            "qtype": q["qtype"],
+            "ans_json_data": ans_data
+        }
+
+        data.append(payload)
+
+    return {
+        "Section": section_code,
+        "Data": data
+    }
+

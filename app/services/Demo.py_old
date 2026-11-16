@@ -1,0 +1,565 @@
+import os
+import requests
+import unicodedata
+from typing import List, Dict
+from fastapi import FastAPI, HTTPException, Header, Request
+from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from app.core.config import settings, CONFIG
+from app.utils.generator import generate_robust_survey
+from app.models.schema import SurveyRequest
+import time
+from app.services.word_generator import create_survey_docx
+import concurrent.futures
+import requests
+from fastapi import FastAPI, Request, Depends
+from fastapi.responses import JSONResponse
+from app.train import get_questions, build_response
+from app.auth import verify_api_key
+from app.logger import get_logger
+import copy
+from fastapi import FastAPI, HTTPException, Depends, Security
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import APIKeyHeader
+from app.services import process
+from app import database_chart
+import uvicorn
+import logging
+
+# create session at module level so that it can be reused across requests
+session = requests.Session()
+
+# --- TRANSLATION CONFIG ---
+TRANSLATE_URL = "https://translation.googleapis.com/language/translate/v2"
+
+LANG_CODES = {
+    "hindi": "hi", "marathi": "mr", "gujarati": "gu", "tamil": "ta",
+    "telugu": "te", "kannada": "kn", "bengali": "bn", "punjabi": "pa", "malayalam": "ml",
+    "assamese": "as", "odiya": "or",  "khasi": "kha", "garo": "grt"
+}
+
+app = FastAPI(
+    title="surveypoint_word API", 
+    version="1.0",
+    root_path="/surveypointmaster" 
+)
+
+load_dotenv()
+# 1. FastAPI setup (root_path hata diya local testing ke liye)
+# app = FastAPI(title="surveypoint_word API", version="1.0")
+
+# Exact Physical Path
+WORD_FILES_DIR = "/var/www/researchnimbliai/storage/app/public/surveyword"
+
+# URL: /thesurveypoint/surveypointmaster/storage/surveyword
+# Folder: /var/www/researchnimbliai/thesurveypoint/storage/app/public/surveyword
+app.mount(
+    "/storage/app/public/surveyword", 
+    StaticFiles(directory=WORD_FILES_DIR), 
+    name="surveyword"
+)
+
+
+INDEX_QUESTIONS = {
+    "Section": "Index / Respondent Details",
+    "Data": [
+        {
+            "question": {"english": "Do you want to proceed with the survey, provide your consent and share your details?"},
+            "qtype": "radio",
+            "ans_json_data": {
+                "english": {
+                    "answer": ["1|Yes", "2|No"]
+                }
+            }
+        },
+        {
+            "question": {"english": "State"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "District"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Block"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "GP"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Village"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Address / Location (GPS)"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Enumerator Name"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Supervisor Name"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Date of Interview"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Start Time"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "End Time"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Name of respondent"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Age"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Gender"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Mobile Number"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Email (optional)"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Unique ID (if applicable)"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Respondent Signature / Thumb Impression"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        },
+        {
+            "question": {"english": "Next Survey/follow up date"},
+            "qtype": "stextbox",
+            "ans_json_data": None
+        }
+    ]
+}
+
+@app.on_event("startup")
+def startup_event():
+    global vector_db
+    db_path = getattr(settings, "DB_FOLDER", CONFIG["db_folder"])
+    if os.path.exists(db_path):
+        embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        vector_db = FAISS.load_local(db_path, embeddings, allow_dangerous_deserialization=True)
+
+
+import os
+import time
+import random
+import unicodedata
+from typing import List, Dict
+
+# Session object ko globally define karein for connection pooling
+import requests
+session = requests.Session()
+
+def translate_chunk(chunk, target_code, max_retries=3):
+    """Translates a small batch of strings with retry logic."""
+    if not chunk: 
+        return []
+
+    # Filter and clean strings
+    cleaned_chunk = [str(text).strip() if text else "" for text in chunk]
+    
+    # Headers are often more stable than URL params for 403 issues
+    headers = {
+        "Content-Type": "application/json; charset=utf-8"
+    }
+    
+    # Google API Key ko params mein ya header mein bhej sakte hain
+    params = {
+        'key': os.getenv("GOOGLE_API_KEY")
+    }
+    
+    # Ye raha aapka 'payload' variable jo missing tha
+    payload = {
+        'q': cleaned_chunk,
+        'target': target_code,
+        'format': 'text'
+    }
+    
+    for attempt in range(max_retries):
+        try:
+            # POST request with JSON payload
+            response = session.post(
+                TRANSLATE_URL, 
+                params=params, 
+                json=payload, 
+                headers=headers, 
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                results = response.json()
+                translations = results.get('data', {}).get('translations', [])
+                return [unicodedata.normalize("NFKD", t['translatedText']) for t in translations]
+            
+            elif response.status_code == 403:
+                # 403 ka matlab Permission issue hai, retry karne se fayda nahi hoga
+                print(f"🚫 403 Forbidden: Check API Key or Billing. Response: {response.text}")
+                return cleaned_chunk 
+                
+            elif response.status_code in [429, 500, 503]:
+                # Rate limit or Server Error: Exponential backoff
+                wait_time = (2 ** (attempt + 1)) + random.uniform(0, 1)
+                print(f"⚠️ Error {response.status_code}. Retrying in {wait_time:.2f}s...")
+                time.sleep(wait_time)
+            else:
+                print(f"❌ Error {response.status_code}: {response.text}")
+                break
+                
+        except Exception as e:
+            print(f"❗ Exception: {e}")
+            time.sleep(2)
+
+    # Fallback: Return original text if everything fails
+    return cleaned_chunk
+
+def batch_translate_parallel(texts: List[str], requested_langs: List[str]) -> Dict[str, List[str]]:
+    if not requested_langs or not texts: return {}
+
+    # Step 1: Extract unique non-empty strings
+    unique_texts = list(dict.fromkeys([t for t in texts if t and str(t).strip()])) 
+    results_map = {}
+    
+    target_langs = [l.lower().strip() for l in requested_langs if l.lower() != "english"]
+    CHUNK_SIZE = 15 # Rediced for safety
+
+    for lang in target_langs:
+        target_code = LANG_CODES.get(lang)
+        if not target_code:
+            print(f"Language code not found for: {lang}")
+            continue
+
+        print(f"🌐 Translating to {lang}...")
+        translated_unique_list = []
+        
+        for i in range(0, len(unique_texts), CHUNK_SIZE):
+            c = unique_texts[i : i + CHUNK_SIZE]
+            translated_unique_list.extend(translate_chunk(c, target_code))
+            # Small delay between chunks to avoid hitting 'Characters Per Minute' limit
+            time.sleep(0.5) 
+
+        # Map back: { "Original": "Translated" }
+        lang_map = dict(zip(unique_texts, translated_unique_list))
+        
+        # Build the final list based on the original input order
+        results_map[lang.upper()] = [lang_map.get(t, t) for t in texts]
+            
+    return results_map
+
+def apply_translations_to_json(combined_json, target_langs):
+    """JSON se data nikal kar batch translation apply karta hai."""
+    if len(target_langs) <= 1 and target_langs[0].lower() == "english":
+        return combined_json
+
+    text_to_translate = []
+    # Step 1: collect all English text from questions and options
+    for section in combined_json:
+        data_key = "Data" if "Data" in section else "data"
+        for item in section.get(data_key, []):
+            text_to_translate.append(item.get("question", {}).get("english", ""))
+            ans_data = item.get("ans_json_data")
+            if ans_data and isinstance(ans_data, dict) and "english" in ans_data:
+                text_to_translate.extend(ans_data["english"].get("answer", []))
+
+    # Step 2: Batch Call
+    translated_map = batch_translate_parallel(text_to_translate, target_langs)
+
+    # Step 3: Re-map to JSON
+    idx = 0
+    for section in combined_json:
+        data_key = "Data" if "Data" in section else "data"
+        for item in section.get(data_key, []):
+            # Question update
+            for lang, trans_list in translated_map.items():
+                item["question"][lang.lower()] = trans_list[idx]
+            idx += 1
+            
+            # Options update
+            ans_data = item.get("ans_json_data")
+            if ans_data and isinstance(ans_data, dict) and "english" in ans_data:
+                count = len(ans_data["english"].get("answer", []))
+                for lang, trans_list in translated_map.items():
+                    lang_key = lang.lower()
+                    if lang_key not in ans_data: ans_data[lang_key] = {"answer": []}
+                    ans_data[lang_key]["answer"] = trans_list[idx : idx + count]
+                idx += count
+
+    return combined_json   
+
+@app.post("/generate-survey-questions")
+async def generate_api(request: SurveyRequest, x_api_key: str = Header(None)):
+    # 1. API Key Check
+    if x_api_key != os.getenv("VALID_API_KEY"):
+        raise HTTPException(status_code=401, detail="Invalid API Key")
+    
+    if vector_db is None:
+        raise HTTPException(status_code=500, detail="Database not loaded.")
+        
+    start_total = time.time()
+    try:
+        combined_final_json = []
+
+        # ✅ FIX: INDEX_QUESTIONS ki deep copy banayeinclea
+        if request.index == 1:
+            fresh_index = copy.deepcopy(INDEX_QUESTIONS)
+            combined_final_json.append(fresh_index)
+
+        # 2. Generate English Base (LLM Generation)
+        start_gen = time.time()
+        for sector_item in request.sectors:
+            sector_result = generate_robust_survey(
+                vector_db, 
+                sector_item.sector_name, 
+                sector_item.reference, 
+                sector_item.no_of_questions, 
+                ["english"], 
+                description=sector_item.description
+            )
+            combined_final_json.append(sector_result)
+        gen_duration = time.time() - start_gen
+
+        # 3. Batch Translate (Google API)
+        start_trans = time.time()
+        final_translated_json = apply_translations_to_json(combined_final_json, request.languages)
+        trans_duration = time.time() - start_trans
+
+        # --- End Timer ---
+        total_duration = time.time() - start_total
+
+        print(f"--- Performance Report ---")
+        print(f"LLM Generation: {gen_duration:.2f}s")
+        print(f"Translation:    {trans_duration:.2f}s")
+        print(f"Total Time:     {total_duration:.2f}s")
+        print(f"--------------------------")
+
+        # --- ✅ FIX: Return list directly, not inside {"data": ...} ---
+        return final_translated_json
+
+    except Exception as e:
+        # Log error for debugging
+        print(f"Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/generate-word")
+async def generate_word_endpoint(data: dict, x_api_key: str = Header(None)):
+    if x_api_key != os.getenv("VALID_API_KEY"):
+        raise HTTPException(status_code=401, detail="Invalid API Key")
+
+    try:
+        # File generate hogi aur folder mein save hogi
+        filename = create_survey_docx(data)
+        logger.info(f"create_survey_docx executed, filename: {filename}")
+        
+        if not filename:
+            logger.error("File generate nahi ho payi.")
+            raise HTTPException(status_code=500, detail="File save nahi ho payi. Check Permissions.")
+            
+
+        # Download URL jo aapne manga tha
+        download_url = f"https://research.nimbli.ai/storage/app/public/surveyword/{filename}"
+        logger.info(f"File generated successfully: {filename}")
+
+        return {
+            "status": "success",
+            "message": "Word file generated in the target folder",
+            "file_name": filename,
+            "download_url": download_url
+        }
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+    
+logger = get_logger()
+logger.info("Server started on /generate-questions endpoint")
+
+import copy
+import time
+
+@app.post("/generate-questions")
+async def generate_questions(
+    request: Request,
+    _: str = Depends(verify_api_key)  
+):
+    start_total = time.time()
+    try:
+        payload = await request.json()
+        logger.info("Received request payload: %s", payload)
+
+        languages = payload.get("languages", ["english"])
+        # Ensure 'english' is in the list for initial generation
+        if "english" not in [l.lower() for l in languages]:
+            languages.insert(0, "english")
+
+        include_index = payload.get("index")
+        num_sectors = int(payload.get("num_sectors", 1))
+        sectors = payload.get("sectors", [])
+
+        if num_sectors != len(sectors):
+            return JSONResponse(
+                {"error": "num_sectors and sectors length mismatch"},
+                status_code=400
+            )
+
+        # Ye list saare sectors ka English data hold karegi
+        combined_final_json = []
+
+        # --- 1. Add Index Section (Deep Copy) ---
+        if include_index == 1:
+            # ✅ Global variable ko protect karne ke liye deepcopy
+            fresh_index = copy.deepcopy(INDEX_QUESTIONS)
+            combined_final_json.append(fresh_index)
+            logger.info("Indexing section added.")
+
+        # --- 2. Generate English Base for each sector ---
+        for sector_info in sectors:
+            sector_name = sector_info.get("Sector Name")
+            reference_text = sector_info.get("reference") or sector_info.get("Reference", "")
+            description = sector_info.get("description")
+            no_of_questions = int(sector_info.get("no_of_questions", 5))
+
+            if not sector_name or not description:
+                logger.warning("Invalid sector payload: %s", sector_info)
+                continue
+
+            ref_list = [reference_text] if reference_text else []
+
+            # Pehle English mein questions generate karein
+            questions = get_questions(
+                sector=sector_name,
+                description=description,
+                n=no_of_questions,
+                reference=ref_list
+            )
+
+            # Build response (sirf English ke saath)
+            # Note: build_response ko ["english"] pass karein taaki base structure ready ho jaye
+            sector_response = build_response(sector_name, questions, ["english"])
+            combined_final_json.append(sector_response)
+
+        # --- 3. Apply Batch Translation ---
+        # Ab poore combined JSON ko ek saath translate karenge
+        start_trans = time.time()
+        final_translated_json = apply_translations_to_json(combined_final_json, languages)
+        trans_duration = time.time() - start_trans
+        
+        total_duration = time.time() - start_total
+        
+        logger.info(
+            "Translation completed in %.2fs | Total time: %.2fs", 
+            trans_duration, total_duration
+        )
+
+        # Seedha translated list return karein
+        return JSONResponse(final_translated_json)
+
+    except Exception:
+        logger.exception("Error while generating questions")
+        return JSONResponse(
+            {"error": "Internal server error"},
+            status_code=500
+        )
+
+
+@app.get("/")
+def home():
+    return {"status": "Combined API (Questions & Word) running"}
+
+
+# --- Authentication Configuration ---
+# .env file mein AUTH_SECRET_KEY hona chahiye
+AUTH_KEY = os.getenv("API_AUTH_KEY")
+api_key_header = APIKeyHeader(name="X-Auth-Key", auto_error=False)
+
+async def validate_api_key(api_key: str = Security(api_key_header)):
+    if not api_key or api_key != AUTH_KEY:
+        raise HTTPException(
+            status_code=403, 
+            detail="Unauthorized: Invalid or missing Auth Key"
+        )
+    logger.info("API key validated successfully.")
+    return api_key
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
+# --- Main Analysis Endpoint ---
+@app.get("/api/v1/charts/{survey_url}")
+async def get_survey_insights(
+    survey_url: str, 
+    auth: str = Depends(validate_api_key)
+):
+    try:
+        # 1. Database se data fetch karein (Dynamic Logic)
+        raw_data = database_chart.fetch_survey_data(survey_url)
+        
+        # Check: Agar database.py None return karta hai (Survey not found)
+        if not raw_data:
+            raise HTTPException(
+                status_code=404, 
+                detail=f"Survey with link '{survey_url}' not found in database."
+            )
+
+        # 2. Numeric ID validationv
+        numeric_id = raw_data.get('numeric_id')
+        if not numeric_id:
+            raise HTTPException(
+                status_code=400, 
+                detail="Critical Error: Numeric ID could not be retrieved for this survey."
+            )
+
+        # 3. AI Analysis Process
+        ai_analysis = process.analyze_with_ai(raw_data, numeric_id, survey_url)
+
+        return ai_analysis
+
+    except HTTPException as he:
+        # FastAPI related errors (403, 404, 400) ko directly throw karein
+        raise he
+    except Exception as e:
+        # Background logs ke liye error print karein
+        print(f"Server Side Error: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail="Internal Server Error: Something went wrong during analysis."
+        )

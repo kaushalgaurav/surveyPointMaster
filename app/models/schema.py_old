@@ -1,0 +1,18 @@
+from typing import List, Optional
+from pydantic import BaseModel, Field
+
+class SectorDetail(BaseModel):
+    sector_name: str = Field(..., alias="Sector Name")
+    # Curl mein 'reference' bhej rahe hain toh yahan wahi alias rakhein
+    reference: str = Field(..., alias="reference") 
+    description: Optional[str] = "General survey"
+    no_of_questions: int = 15
+
+    class Config:
+        populate_by_name = True
+
+class SurveyRequest(BaseModel):
+    languages: List[str]
+    num_sectors: int
+    sectors: List[SectorDetail]
+    index: Optional[int] = 0

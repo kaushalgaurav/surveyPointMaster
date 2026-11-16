@@ -1,0 +1,333 @@
+from difflib import SequenceMatcher
+import re
+from app.utils.processor import contains_hindi, is_mostly_english, clean_noise, is_real_question
+from app.utils.clean import infer_options_from_question, split_merged_options, clean_question_text
+from app.core.config import settings
+import os
+from docx import Document
+# from langchain_core.documents import Document as LangChainDocument
+#from langchain_core.documents import Document as LangChainDocument
+#from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain.schema import Document as LangChainDocument
+from langchain_community.embeddings import HuggingFaceEmbeddings, logger
+from langchain_community.vectorstores import FAISS
+from app.logger import get_logger
+from app.utils.format import normalize_sector
+
+logger = get_logger()
+
+# --- FIXED: Format Options (Handles DON'T KNOW Merge & Q14 Leak) ---
+def format_options(raw_text, question_text):
+    if not raw_text: 
+        return infer_options_from_question(question_text)
+
+    text = clean_noise(raw_text)
+    text = split_merged_options(text)
+    lines = text.split('\n')
+    formatted_lines = []
+    
+    STOP_WORDS_STRICT = ["RECORD", "CALENDAR", "COLUMN", "TABLE", "CHECK", "FILTER", "PROBE", "COPY", "SPECIFY"]
+    STOP_WORDS_ROUTING = ["SKIP TO", "GO TO"] 
+
+    merged_lines = []
+    temp_lines = [l.strip() for l in lines if l.strip()]
+    
+    i = 0
+    while i < len(temp_lines):
+        curr = temp_lines[i]
+        # Check for DON'T + KNOW
+        if i + 1 < len(temp_lines):
+            nxt = temp_lines[i+1]
+            if curr.upper() in ["DON'T", "DONT", "DON"] and nxt.upper() == "KNOW":
+                merged_lines.append("DON'T KNOW")
+                i += 2
+                continue
+        merged_lines.append(curr)
+        i += 1
+    
+    # Now process the clean merged lines
+    for clean_line in merged_lines:
+        if len(clean_line) < 1: continue
+        if re.fullmatch(r'\d{1,3}', clean_line): continue # Skip matrix numbers
+
+        upper_line = clean_line.upper()
+        clean_line = re.sub(r'\s*\(?(SKIP|GO)\s+TO\s+\d+\)?', '', clean_line, flags=re.IGNORECASE).strip()
+        clean_line = re.sub(r'\(?SPECIFY\)?', '', clean_line, flags=re.IGNORECASE).strip()
+
+        if len(clean_line) < 2: continue
+
+        if any(word in upper_line for word in STOP_WORDS_STRICT): continue
+        if any(upper_line.startswith(w) for w in STOP_WORDS_ROUTING): continue
+
+        if re.search(r'^YES\s+NO$', clean_line, re.IGNORECASE):
+            formatted_lines.append("- YES (1)")
+            formatted_lines.append("- NO (2)")
+            continue
+
+        # Filters
+        ratio = SequenceMatcher(None, clean_line.lower(), question_text.lower()).ratio()
+        if ratio > 0.5: continue
+        if contains_hindi(clean_line): continue
+        if not is_mostly_english(clean_line): continue
+
+        # Header Check
+        has_code_at_end = bool(re.search(r'\s+[0-9A-Z]{1,2}$', clean_line))
+        is_text_header = clean_line.strip().upper() in ["CHALLENGES", "RANK", "CODE", "REASON", "PUBLIC HEALTH SECTOR", "OTHER PUBLIC SECTOR", "NGO", "PRIVATE SECTOR"]
+        
+        is_header = (clean_line.isupper() and not any(c.isdigit() for c in clean_line[:-2]) and len(clean_line) > 4) or is_text_header
+        
+        # unless the question asks "Where" or "Check"
+        question_is_simple = any(q in question_text.upper() for q in ["DO YOU KNOW", "HAVE YOU HEARD", "DID YOU"])
+        question_is_location = any(q in question_text.upper() for q in ["WHERE", "PLACE", "CHECKED", "GO"])
+        
+        if is_header and question_is_simple and not question_is_location:
+            continue # Skip headers like "PUBLIC HEALTH SECTOR" if question is just "Do you know?"
+
+        if is_header and not has_code_at_end and not any(x in clean_line for x in ["HOURS", "DAYS", "WEEKS", "DON'T", "KNOW"]):
+             if formatted_lines and clean_line in formatted_lines[-1]: continue
+             formatted_lines.append(f"\n[{clean_line}]")
+             continue
+
+        formatted_lines.append(f"- {clean_line}")
+
+    only_headers = all(line.strip().startswith("[") or not line.strip() for line in formatted_lines)
+    if only_headers: return "" 
+
+    if "YES" in str(formatted_lines).upper() and "NO" not in str(formatted_lines).upper():
+        formatted_lines.append("- NO (2)")
+
+    if not formatted_lines:
+        return infer_options_from_question(question_text)
+
+    return "\n".join(formatted_lines).strip()
+
+def classify_question(text):
+    text_lower = text.lower()
+    basic_keywords = ["name", "age", "address", "marital", "education", "religion", "caste", "phone", "household", "respondent"]
+    if any(word in text_lower for word in basic_keywords): return "BASIC"
+    return "COMPLEX"
+
+def _is_tool_title(text):
+    upper = text.strip().upper()
+    return bool(re.match(r'^(IDI|FGD)\s+TOOL\b', upper)) or upper.startswith(("SECTION ", "CHAPTER "))
+
+def process_paragraph_questions(doc):
+    """Extract questions from paragraph-based IDI/FGD guides (no tables)."""
+    processed = []
+    seen_hashes = set()
+
+    for paragraph in doc.paragraphs:
+        raw_text = paragraph.text.strip()
+        if not raw_text or not is_mostly_english(raw_text):
+            continue
+        if _is_tool_title(raw_text):
+            continue
+
+        clean_q_text = clean_question_text(raw_text)
+        if not is_real_question(clean_q_text):
+            continue
+
+        q_hash = re.sub(r'\s+', '', clean_q_text.lower())
+        if q_hash in seen_hashes:
+            continue
+        seen_hashes.add(q_hash)
+
+        opts = infer_options_from_question(clean_q_text)
+        final_text = clean_q_text
+        if opts:
+            final_text += f"\nOptions:\n{opts}"
+
+        processed.append({"text": final_text, "tag": classify_question(clean_q_text)})
+
+    return processed
+
+def process_file_final(file_path):
+    try:
+        doc = Document(file_path)
+    except Exception as e:
+        print(f"      ❌ Error reading {os.path.basename(file_path)}: {e}")
+        return []
+
+    processed = []
+    seen_hashes = set()
+    last_entry = None
+    last_valid_q_text = ""
+
+    for table in doc.tables:
+        for row in table.rows:
+            if len(row.cells) >= 2:
+                raw_q = row.cells[1].text
+                lines = raw_q.split('\n')
+                english_lines = [l for l in lines if is_mostly_english(l)]
+                clean_q_text = " ".join(english_lines)
+                clean_q_text = clean_question_text(clean_q_text)
+                
+                if is_real_question(clean_q_text):
+                    q_hash = re.sub(r'\s+', '', clean_q_text.lower())
+                    if q_hash in seen_hashes: 
+                        last_entry = None
+                        continue
+                    seen_hashes.add(q_hash)
+
+                    opts = ""
+                    if len(row.cells) > 2:
+                        opts = format_options(row.cells[2].text, clean_q_text)
+
+                    final_text = f"{clean_q_text}"
+                    if opts: final_text += f"\nOptions:\n{opts}"
+                    
+                    entry = {"text": final_text, "tag": classify_question(clean_q_text)}
+                    processed.append(entry)
+                    last_entry = entry 
+                    last_valid_q_text = clean_q_text
+                
+                elif last_entry is not None and len(row.cells) > 2:
+                    raw_opt = row.cells[2].text.strip()
+                    if len(raw_opt) > 2 and len(clean_q_text) < 5:
+                        more_opts = format_options(raw_opt, last_valid_q_text)
+                        if more_opts:
+                            if "Options:" in last_entry['text']:
+                                last_entry['text'] += f"\n{more_opts}"
+                            else:
+                                last_entry['text'] += f"\nOptions:\n{more_opts}"
+
+    if not processed:
+        processed = process_paragraph_questions(doc)
+
+    return processed
+
+# def create_knowledge_base():
+#     # FIXED: Reference settings.DATA_FOLDER
+#     print(f"🚀 Scanning folder structure: {settings.DATA_FOLDER}...")
+#     all_documents = []
+#     global_hashes = set()
+
+#     if not os.path.exists(settings.DATA_FOLDER): 
+#         print(f"❌ Folder not found at: {settings.DATA_FOLDER}")
+#         return
+
+#     for root, dirs, files in os.walk(settings.DATA_FOLDER):
+#         for filename in files:
+#             if filename.endswith(".docx") and not filename.startswith("~"):
+#                 path = os.path.join(root, filename)
+#                 file_tag = os.path.splitext(filename)[0].lower()
+                
+#                 # FIXED: Reference settings.DATA_FOLDER
+#                 rel_path = os.path.relpath(root, settings.DATA_FOLDER)
+#                 if rel_path == ".": sector_tag = "general"
+#                 else: sector_tag = rel_path.split(os.sep)[0].lower()
+                
+#                 print(f"   📂 Sector: [{sector_tag}] -> Processing: {filename}")
+#                 data = process_file_final(path)
+                
+#                 if data:
+#                     count = 0
+#                     for item in data:
+#                         q_hash = re.sub(r'\s+', '', item['text'].split('\n')[0].lower())
+#                         if q_hash in global_hashes: continue
+#                         global_hashes.add(q_hash)
+#                         doc = LangChainDocument(
+#                             page_content=f"[{item['tag']}] {item['text']}", 
+#                             metadata={
+#                                 "source_type": file_tag, 
+#                                 "complexity": item['tag'], 
+#                                 "sector": sector_tag
+#                             }
+#                         )
+#                         all_documents.append(doc)
+#                         count += 1
+#                     print(f"      -> Added {count} Qs.")
+
+#     if all_documents:
+#         print(f"\n🧠 Indexing {len(all_documents)} items...")
+#         embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+#         vector_db = FAISS.from_documents(all_documents, embeddings)
+        
+#         # FIXED: Reference settings.DB_OUTPUT_FOLDER
+#         vector_db.save_local(settings.DB_OUTPUT_FOLDER)
+#         print(f"✅ Database Rebuilt at {settings.DB_OUTPUT_FOLDER}!")
+#     else:
+#         print("❌ No valid questions found.")
+
+def create_knowledge_base():
+    # 1. Path check (Settings.DATA_FOLDER should be the /var/www/... path)
+    logger.info(f"Scanning folder structure: {settings.DATA_FOLDER}...")
+    print(f"Scanning folder structure: {settings.DATA_FOLDER}...")
+    all_documents = []
+    global_hashes = set()
+
+    if not os.path.exists(settings.DATA_FOLDER): 
+        logger.error(f"External folder not found at: {settings.DATA_FOLDER}")
+        print(f"External folder not found at: {settings.DATA_FOLDER}")
+        return
+
+    allowed_types = {t.lower() for t in settings.SURVEY_TYPES}
+    allow_all_types = "*" in allowed_types or not allowed_types
+
+    # 2. Walk through folders (sector/survey_type/*.docx)
+    for root, dirs, files in os.walk(settings.DATA_FOLDER):
+        rel_path = os.path.relpath(root, settings.DATA_FOLDER)
+        path_parts = rel_path.split(os.sep)
+
+        if len(path_parts) < 2 or path_parts[0] == ".":
+            continue
+
+        survey_type_tag = path_parts[1].lower()
+        if not allow_all_types and survey_type_tag not in allowed_types:
+            continue
+
+        sector_tag = normalize_sector(path_parts[0])
+
+        for filename in files:
+            # Word file check + lock files ignore
+            if filename.endswith(".docx") and not filename.startswith("~"):
+                path = os.path.join(root, filename)
+                file_tag = os.path.splitext(filename)[0].lower()
+                
+                logger.info(f"   Sector: [{sector_tag}] | Type: [{survey_type_tag}] -> Processing: {filename}")
+                print(f"   Sector: [{sector_tag}] | Type: [{survey_type_tag}] -> Processing: {filename}")
+                
+                try:
+                    data = process_file_final(path)
+                    
+                    if data:
+                        count = 0
+                        for item in data:
+                            # Hashing for duplicates
+                            q_hash = re.sub(r'\s+', '', item['text'].split('\n')[0].lower())
+                            if q_hash in global_hashes: continue
+                            global_hashes.add(q_hash)
+                            
+                            doc = LangChainDocument(
+                                page_content=f"[{item['tag']}] {item['text']}", 
+                                metadata={
+                                    "source_type": file_tag, 
+                                    "complexity": item['tag'], 
+                                    "sector": sector_tag,
+                                    "survey_type": survey_type_tag,
+                                    "full_path": path
+                                }
+                            )
+                            all_documents.append(doc)
+                            count += 1
+                        logger.info(f"      -> Added {count} Qs from {filename}")
+                except Exception as e:
+                    logger.error(f"❌ Error processing file {filename}: {str(e)}")
+
+    # 3. Indexing & Saving
+    if all_documents:
+        logger.info(f"\nIndexing {len(all_documents)} items...")
+        embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        vector_db = FAISS.from_documents(all_documents, embeddings)
+        
+        vector_db.save_local(settings.DB_OUTPUT_FOLDER)
+        logger.info(f"Database rebuilt at {settings.DB_OUTPUT_FOLDER}!")
+        print(f"Database rebuilt at {settings.DB_OUTPUT_FOLDER}!")
+    else:
+        types_label = "all (*)" if allow_all_types else ", ".join(settings.SURVEY_TYPES)
+        logger.warning(f"No valid questions found in survey-type sub-folders ({types_label}).")
+        print(f"No valid questions found in survey-type sub-folders ({types_label}).")
+
+
+if __name__ == "__main__":
+    create_knowledge_base()

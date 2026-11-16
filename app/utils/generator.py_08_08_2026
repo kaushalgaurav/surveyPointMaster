@@ -1,0 +1,61 @@
+import json
+from app.utils.format import format_mcq_to_json_and_print, get_dynamic_exclusion_list, is_duplicate, normalize_key
+from app.core.config import CONFIG
+
+def generate_robust_survey(db, sector_input, reference, total_questions, target_langs, description=None, survey_type=None):
+    search_desc = description if description else ""
+    current_exclusions = get_dynamic_exclusion_list(sector_input, search_desc)
+    type_hint = f"{survey_type} " if survey_type else ""
+    
+    query_basic = f"{type_hint}{sector_input} basic demographics profile"
+    query_complex = f"{type_hint}{reference} {sector_input} {search_desc} details check"
+    
+    results_A_with_scores = db.similarity_search_with_score(query_basic, k=CONFIG["fetch_limit_basic"])
+    results_B_with_scores = db.similarity_search_with_score(query_complex, k=CONFIG["fetch_limit_complex"])
+    
+    final_data_list = []
+    seen_content = []
+    norm_input = normalize_key(sector_input)
+    norm_survey_type = normalize_key(survey_type) if survey_type else None
+    global_counter = 1
+    
+    # Threshold setting: Jitna kam score, utni zyada similarity (0.5 - 0.6 standard hai)
+    RELEVANCE_THRESHOLD = 1.50
+    
+    # Dono results ko unke scores ke sath process karenge
+    all_results = [results_A_with_scores, results_B_with_scores]
+    
+    for results in all_results:
+        for doc, score in results:
+            if global_counter > total_questions: break
+            
+            # --- NEW: Relevance Check ---
+            # Agar score threshold se zyada hai, matlab relevance kam hai -> skip karein
+            if score > RELEVANCE_THRESHOLD:
+                continue 
+
+            doc_sector = normalize_key(doc.metadata.get('sector', 'general'))
+            if doc_sector != 'general' and doc_sector != norm_input:
+                continue
+
+            if norm_survey_type:
+                doc_survey_type = normalize_key(doc.metadata.get('survey_type', ''))
+                if doc_survey_type != norm_survey_type:
+                    continue
+
+            if is_duplicate(doc.page_content, seen_content): 
+                continue
+            
+            content_upper = doc.page_content.upper()
+            if any(exc.upper() in content_upper for exc in current_exclusions):
+                continue
+
+            question_data = format_mcq_to_json_and_print(global_counter, doc.page_content, target_langs)
+            final_data_list.append(question_data)
+            seen_content.append(doc.page_content)
+            global_counter += 1
+
+    return {
+        "Section": sector_input,
+        "Data": final_data_list
+    }

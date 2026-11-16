@@ -1,0 +1,185 @@
+from app.services.translator import translate_text
+import re
+import unicodedata
+from difflib import SequenceMatcher
+from app.core.config import CONFIG
+import logging 
+
+# --- LOGGING CONFIGURATION (Log file mein save karne ke liye) ---
+# Terminal output band karke sirf file mein save karega
+log_file_path = "survey_app.log"
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Purane handlers clear karein taaki terminal par print na ho
+if logger.hasHandlers():
+    logger.handlers.clear()
+
+file_handler = logging.FileHandler(log_file_path, mode='a', encoding='utf-8')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+
+# Isse ensure hoga ki terminal (StreamHandler) par data nahi jayega
+logger.propagate = False
+
+# --- CORE LOGIC (Kept exactly as per your snippet) ---
+def is_duplicate(new_text, current_list):
+    new_q = new_text.split('\n')[0].replace("[BASIC]", "").replace("[COMPLEX]", "").strip().lower()
+    for item in current_list:
+        existing_q = item.split('\n')[0].replace("[BASIC]", "").replace("[COMPLEX]", "").strip().lower()
+        if new_q in existing_q or existing_q in new_q: return True
+        ratio = SequenceMatcher(None, new_q, existing_q).ratio()
+        if ratio > CONFIG["duplicate_ratio"]: return True
+    return False
+
+def normalize_key(text):
+    return re.sub(r'[\W_]+', '', text.lower())
+
+def get_dynamic_exclusion_list(sector, topic):
+    user_intent = (sector + " " + topic).upper()
+    active_exclusions = []
+    for noise_word in CONFIG["default_noise_words"]:
+        if noise_word not in user_intent: active_exclusions.append(noise_word)
+    return active_exclusions
+
+
+def format_mcq_to_json_and_print(counter, doc_content, target_langs):
+    # --- PREPARATION ---
+    clean_content = doc_content.replace("[BASIC]", "").replace("[COMPLEX]", "").strip()
+    
+    if "Options:" in clean_content:
+        parts = clean_content.split("Options:")
+        question_text = parts[0].strip()
+        options_block = parts[1].strip()
+    else:
+        question_text = clean_content
+        options_block = ""
+
+    # English Question Cleanup
+    display_q_english = re.sub(r'^[○\-\d\.\s\)=]+', '', question_text).strip()
+    
+    # Filter out English from translation list
+    filtered_langs = [l for l in target_langs if l.lower() != "english"]
+
+    # --- 1. ENGLISH BLOCK PRINTING (Terminal) ---
+    logger.info(f"\nQ{counter}. {display_q_english}")
+    # print(f"\nQ{counter}. {display_q_english}")
+    # print("-" * 60)
+
+    # --- 2. OPTIONS PROCESSING (Your Logic + JSON Build) ---
+    english_options_list = []
+    processed_options_metadata = [] # Used for translation loop
+    
+    if options_block:
+        raw_lines = [l.strip() for l in options_block.split('\n') if l.strip()]
+        merged_lines = []
+        i = 0
+        
+        # Helper function as per your logic
+        def get_clean_compare(text):
+            t = text.upper()
+            t = re.sub(r'\.{2,}', '', t)  
+            t = re.sub(r'^[○\-\d\.\s\)=]+', '', t) 
+            t = re.sub(r'\s+[A-Z0-9]{1,3}$', '', t) 
+            return t.strip()
+
+        while i < len(raw_lines):
+            check_curr = get_clean_compare(raw_lines[i])
+            
+            # Smart Merge Logic for "DON'T KNOW"
+            if i + 1 < len(raw_lines):
+                check_next = get_clean_compare(raw_lines[i+1])
+                if check_curr in ["DON'T", "DONT", "DON"] and check_next == "KNOW":
+                    merged_lines.append("DON'T KNOW")
+                    i += 2
+                    continue
+            merged_lines.append(raw_lines[i])
+            i += 1
+
+        base_indent = "   "
+        for line in merged_lines:
+            line = unicodedata.normalize("NFKD", line)
+            
+            # Header handling
+            if line.startswith("[") and line.endswith("]"):
+                header_text = line[1:-1]
+                logger.info(f"\n{base_indent}{header_text}")
+                # print(f"\n{base_indent}{header_text}")
+                processed_options_metadata.append({"type": "header", "text": header_text})
+            else:
+                # Cleaning logic from your original code
+                opt_text = line.strip()
+                opt_text = re.sub(r'\.{2,}', '', opt_text)
+                opt_text = re.sub(r'^[○\-\d\.\s\)=]+', '', opt_text).strip()
+                opt_text = re.sub(r'\s+[A-Z0-9]{1,3}$', '', opt_text).strip()
+                opt_text = re.sub(r'\s*\([0-9A-Z]{1,5}\)$', '', opt_text)
+                opt_text = re.sub(r'\(?SPECIFY\)?', '', opt_text, flags=re.IGNORECASE).strip()
+
+                # Cleanup trailing digits/tabs (Religion noise like \t01)
+                while True:
+                    match_digit = re.search(r'[\s\.\-_]+(\d+)$', opt_text)
+                    if match_digit: opt_text = re.sub(r'[\s\.\-_]+\d+$', '', opt_text)
+                    else: break 
+                
+                if not opt_text or re.fullmatch(r'\d+', opt_text): continue
+                
+                logger.info(f"{base_indent}○ {opt_text}")
+                # print(f"{base_indent}○ {opt_text}")
+                english_options_list.append(opt_text)
+                processed_options_metadata.append({"type": "option", "text": opt_text})
+
+    # Smart YES/NO fallback
+    if len(english_options_list) == 1 and english_options_list[0].upper() == "NO":
+        english_options_list = ["YES", "NO"]
+        processed_options_metadata = [{"type": "option", "text": "YES"}, {"type": "option", "text": "NO"}]
+
+    # --- 3. JSON OBJECT CONSTRUCTION ---
+    question_map = {"english": display_q_english}
+    ans_json_data = None
+    # Default qtype logic
+    qtype = "stextbox" 
+
+    if english_options_list:
+        qtype = "radio"
+        ans_json_data = {
+            "english": {"answer": [f"{idx+1}|{opt}" for idx, opt in enumerate(english_options_list)]}
+        }
+
+    # --- 4. TRANSLATION BLOCK (Terminal + JSON) ---
+    if filtered_langs:
+        for lang in filtered_langs:
+            lang_upper = lang.upper()
+            logger.info(f"\n{lang_upper}")
+            
+            # Translate Question
+            q_trans_map = translate_text(display_q_english, [lang])
+            translated_q = q_trans_map.get(lang_upper, display_q_english)
+            question_map[lang.lower()] = translated_q
+            
+            logger.info(f"\nQ{counter}. {translated_q}")
+            logger.info("-" * 60)
+            
+            # Translate Options
+            ans_json_data[lang.lower()] = {"answer": []}
+            option_counter = 1
+            
+            for item in processed_options_metadata:
+                item_trans_map = translate_text(item["text"], [lang])
+                translated_item = item_trans_map.get(lang_upper, item["text"])
+                
+                if item["type"] == "header":
+                    logger.info(f"\n{base_indent}{translated_item}")
+                else:
+                    logger.info(f"{base_indent}○ {translated_item}")
+                    ans_json_data[lang.lower()]["answer"].append(f"{option_counter}|{translated_item}")
+                    option_counter += 1
+
+    logger.info("\n" + "="*60)
+
+    # Return structure for API
+    return {
+        "question": question_map,
+        "qtype": qtype,
+        "ans_json_data": ans_json_data if english_options_list else None
+    }

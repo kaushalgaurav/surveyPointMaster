@@ -1,0 +1,24 @@
+import os
+
+class Settings:
+    # Use paths relative to the project root
+    #DATA_FOLDER = "app/raw_data2" 
+    DATA_FOLDER = "/var/www/researchnimbliai/storage/app/public/wordfiles"
+    DB_OUTPUT_FOLDER = "faiss_index_nfhs"
+    EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+    # Subfolders under each sector that contain survey Word files
+    SURVEY_TYPES = ("quantitative", "fgd", "idi", "other")
+
+settings = Settings()
+
+# --- CONFIGURATION ---
+CONFIG = {
+    "db_folder": "faiss_index_nfhs",
+    "similarity_threshold": 1.15,      
+    "duplicate_ratio": 0.85,           
+    "demographics_count": 3,           
+    "demographics_query": "respondent name age address education religion family profile",
+    "default_noise_words": ["BANK", "ACCOUNT", "INSURANCE", "HIV", "AIDS", "SCHEME", "MALARIA", "TB", "MOSQUITO", "NET", "VACCINATION", "CROP", "FARM"],
+    "fetch_limit_basic": 20,           
+    "fetch_limit_complex": 100          
+}

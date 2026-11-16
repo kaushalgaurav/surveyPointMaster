@@ -1,0 +1,71 @@
+# app/models/question_model.py
+import json
+from sqlalchemy import text
+from app.database import get_db_session
+from app.logger import get_logger
+
+logger = get_logger()
+logger.info("Question Model module loaded")
+
+def load_questions_from_db():
+    session = get_db_session()
+    dataset = {}
+
+    query = text("""
+        SELECT 
+            s.sector_name AS sector,
+            ts.id AS template_id,
+            ts.title AS template_title,
+            ts.template_desc AS template_description,
+            tsd.qid,
+            tsd.qtype,
+            tsd.ques_title_json,
+            tsd.ans_json_data
+        FROM template_survey ts
+        JOIN template_survey_data tsd ON ts.id = tsd.survey_id
+        LEFT JOIN sector s ON ts.sector = s.short_name
+        WHERE ts.status = 1
+        ORDER BY s.sector_name, ts.id, tsd.qid;
+    """)
+
+    try:
+        result = session.execute(query).mappings().all()
+        logger.info(f"Fetched {len(result)} rows from DB")
+
+        for row in result:
+            sector = row["sector"] or "Unknown"
+            template_id = row["template_id"]
+
+            dataset.setdefault(sector, {})
+            dataset[sector].setdefault(template_id, {
+                "reference": row["template_title"] or "",
+                "description": row["template_description"] or "",
+                "questions": []
+            })
+
+            try:
+                q_title_json = json.loads(row["ques_title_json"]) if row["ques_title_json"] else {}
+            except Exception as e:
+                logger.error(f"Invalid ques_title_json | qid={row['qid']} | {e}")
+                q_title_json = {}
+
+            try:
+                ans_json_data = json.loads(row["ans_json_data"]) if row["ans_json_data"] else None
+            except Exception as e:
+                logger.error(f"Invalid ans_json_data | qid={row['qid']} | {e}")
+                ans_json_data = None
+
+            dataset[sector][template_id]["questions"].append({
+                "qid": row["qid"],
+                "qtype": row["qtype"],
+                "q_title_json": q_title_json,
+                "ans_json_data": ans_json_data
+            })
+
+    except Exception:
+        logger.exception("❌ Failed DB query")
+        raise
+    finally:
+        session.close()
+
+    return dataset

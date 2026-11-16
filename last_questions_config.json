@@ -1,0 +1,4668 @@
+[
+    {
+        "qid": "deviceid",
+        "question": {
+            "english": "deviceid"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "devicephonenum",
+        "question": {
+            "english": "devicephonenum"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "username",
+        "question": {
+            "english": "username"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "device_info",
+        "question": {
+            "english": "device_info"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "duration",
+        "question": {
+            "english": "duration"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "caseid",
+        "question": {
+            "english": "caseid"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "calc_date",
+        "question": {
+            "english": "calc_date"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "calc_stime1",
+        "question": {
+            "english": "calc_Stime1"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "consent",
+        "question": {
+            "english": "Do you consent to participate in the research?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a01",
+        "question": {
+            "english": "A01 State name"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Bihar",
+                    "2|Meghalaya",
+                    "3|Maharashtra"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a00",
+        "question": {
+            "english": "A00 Interviewer name"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "40|ANISH",
+                    "51|Rajesh Yadav",
+                    "52|Savitri",
+                    "53|Suman",
+                    "54|Reena",
+                    "55|Pratima",
+                    "56|Ajay Gupta",
+                    "57|Sangeeta",
+                    "58|Vinita",
+                    "59|Preamseela",
+                    "60|Reshu",
+                    "61|Joyti",
+                    "62|kavita",
+                    "63|Abhay",
+                    "64|Shivangi",
+                    "65|Saumya",
+                    "66|Shalini",
+                    "67|Ravita",
+                    "68|Kamini",
+                    "69|Anshu",
+                    "70|Ropali",
+                    "71|Ashok",
+                    "72|Lalit Ray",
+                    "73|Priyanka",
+                    "74|Sarita",
+                    "75|Pummy",
+                    "76|Calef I Suchen",
+                    "77|Iasuklang Mawlong",
+                    "78|Daroikisaka Langstang",
+                    "79|Arwankorkini Phawa",
+                    "80|Shadkmen Rynjah",
+                    "81|Nebesslar Nongkynrih",
+                    "82|Ishantr Kiru Laloo",
+                    "83|N. Nathanael Syiem",
+                    "84|Viviantius L. Kympat",
+                    "85|Noel Kenny Malang",
+                    "86|Olena Ferlin L. Dhar",
+                    "87|Phibankyntiew Langstieh",
+                    "88|Other (specify)",
+                    "89|Medashisha K. Dympep",
+                    "90|Skhemboklang K. Kongor",
+                    "91|Doreenoa Niangmih",
+                    "92|Sansimai Shabong",
+                    "93|Risawa Mawlong",
+                    "94|Daphishisha Kharthangmaw",
+                    "95|Lalremrout Motsun",
+                    "96|Riskolinmery Marngar",
+                    "97|Encyclopedia Langshiang",
+                    "98|Phidonna Khongbuh",
+                    "99|Ribanylla L Rngaid",
+                    "100|Wansukshisha L. Rngaid",
+                    "101|Rangdajied Phyllei",
+                    "102|Ibadondor Diengdoh",
+                    "103|Christie Lyngdoh",
+                    "104|Baiakyrmen Swer",
+                    "105|Phibarisa Kharkongor",
+                    "301|NIKESH VAITY",
+                    "302|CHANDAN BARAI",
+                    "303|DIPALI PAWAR",
+                    "304|NAMRATA DESAI",
+                    "305|NELOFER SHEK",
+                    "306|AKASH",
+                    "307|VAISHNAVI NANANE",
+                    "308|ANSARI RUKHSAR",
+                    "309|PAWAN HATWAR",
+                    "310|MANISH",
+                    "311|PRATIKSHA NAGRALE",
+                    "312|PRANALI ALONE",
+                    "313|PRASHANT TAWADE",
+                    "314|VAISHNAVI POPAT",
+                    "315|PAYAL DABLE",
+                    "316|VIDYA ANDORE",
+                    "317|PRAVIN KHUNKAR",
+                    "318|KIRAN",
+                    "319|RITA",
+                    "320|RITUJA AHIRE",
+                    "321|SHUBHAM PRADHAN",
+                    "322|PANKAJ PATIL",
+                    "323|ARCHANA HADKOR",
+                    "324|NARENDRA TIWARI",
+                    "325|PARTH PATIL",
+                    "326|SAKSHI BORWAR"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a02",
+        "question": {
+            "english": "A02 District name"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Thane",
+                    "2|East Khasi Hills",
+                    "3|West Champaran"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a03a",
+        "question": {
+            "english": "A03a Type of PSU"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Rural",
+                    "2|Urban"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a03",
+        "question": {
+            "english": "A03 Block"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Mylliem",
+                    "2|Mawkynrew",
+                    "3|Mawsynram",
+                    "4|Bagaha",
+                    "5|Bairia",
+                    "6|Sikta",
+                    "7|Bhiwandi",
+                    "8|Shilphata"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a04",
+        "question": {
+            "english": "A04 UPHC/Facility name"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "201|Mylliem",
+                    "202|Mawkynrew",
+                    "203|Mawsynram",
+                    "401|Bagaha",
+                    "501|Bairia",
+                    "601|Sikta",
+                    "701|Shanti Nagar",
+                    "702|Gaytri Nagar",
+                    "703|Avchitpada",
+                    "704|Navi Vasti",
+                    "705|Azmi Nagar",
+                    "706|Nadi Naka",
+                    "707|Millat Nagar",
+                    "708|Anjur Phata",
+                    "709|Idgha",
+                    "710|Gaibi Nagar",
+                    "711|BHANDARI",
+                    "8888|Other specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a05",
+        "question": {
+            "english": "A05 Village/Ward name"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "20101|Nongrah",
+                    "20102|Lapalang",
+                    "20103|Laitkor Lumheh",
+                    "20104|Mawnianglah",
+                    "20105|Lummawbah",
+                    "20106|Mawtawar",
+                    "20107|Laitkor Nongdaneng",
+                    "20108|Mawkynroh Umshing",
+                    "20109|Mawpynthih",
+                    "20110|Mawklot",
+                    "20111|Laitkor Mawri",
+                    "20112|Laitkor Rngi",
+                    "20113|Nongumlong",
+                    "20114|Mawbynna",
+                    "20115|5th Mile",
+                    "20116|3 1/2 Mile",
+                    "20117|Laitjem",
+                    "20118|Lumpdeng",
+                    "20119|Madan-Iingsyiem",
+                    "20120|Baniun",
+                    "20121|Mawsiat Khnam",
+                    "20122|Liewlong",
+                    "20123|Lawmei",
+                    "20124|Pomlum",
+                    "20125|Maweitnai",
+                    "20126|Mawkhanpasir",
+                    "20127|Umiew",
+                    "20128|Rngi shyllong",
+                    "20129|4 1/2 Mile",
+                    "20130|Nongpathaw",
+                    "20201|Thynroit",
+                    "20202|Jongksha",
+                    "20203|Laitkyrhong",
+                    "20204|Kharang",
+                    "20205|Thangsning",
+                    "20206|Nongjrong",
+                    "20207|Lynshing",
+                    "20208|Pingwait",
+                    "20209|Wahlakhiat",
+                    "20210|Mynsang",
+                    "20211|Syntung",
+                    "20212|Nongryngkoh",
+                    "20213|Mawkynrew",
+                    "20214|Mawblang",
+                    "20215|Jatah Lakadong",
+                    "20216|Dienglieng",
+                    "20217|Mawlein",
+                    "20218|Nohron",
+                    "20219|Rapleng",
+                    "20220|Mawkria",
+                    "20221|Laitdiengsai",
+                    "20222|Mawlali",
+                    "20223|Laitlum",
+                    "20224|Mawjatap",
+                    "20225|Umsning",
+                    "20226|Mawlat",
+                    "20227|Jatah Nonglyer",
+                    "20228|Rngibah",
+                    "20229|Syniasya",
+                    "20230|Nonghulew",
+                    "20301|Mawlyngbna",
+                    "20302|Mawsynram Dongrum",
+                    "20303|Lawbah",
+                    "20304|Pongkung",
+                    "20305|Kenmynsaw",
+                    "20306|Nongtrai",
+                    "20307|Umkseh",
+                    "20308|Phlangwanbroi",
+                    "20309|Kyrdoh",
+                    "20310|Dangar Dombah",
+                    "20311|Laitmawsiang",
+                    "20312|Mawhiang",
+                    "20313|Pyndensohsaw",
+                    "20314|Kmawan",
+                    "20315|Ryngku Bazar",
+                    "20316|Wahmawpat",
+                    "20317|Kenbah Malai",
+                    "20318|Weiloi",
+                    "20319|Mawsynram Dongneng",
+                    "20320|Kenbah Syntein",
+                    "20321|Mawkasain",
+                    "20322|Mawtepiew",
+                    "20323|Nongwah",
+                    "20324|Sonatola",
+                    "20325|Thyllaw Warding",
+                    "20326|Tyngnger",
+                    "20327|Mawpen",
+                    "20328|Chirakatta",
+                    "20329|Nongdommawria",
+                    "20330|Boro Ryngku",
+                    "20331|Mawlynnu",
+                    "20332|Mawsadang",
+                    "20333|Kyrphei",
+                    "20334|Mawteibah",
+                    "20335|Pyndenborsora",
+                    "20336|Nongmadan",
+                    "20337|Pataghat",
+                    "20338|Mawsynram Dongshilliang",
+                    "20339|Mawkhan",
+                    "20340|Umlangmar",
+                    "20341|Mawlum Tyrsad",
+                    "20342|Mawryngkang",
+                    "20343|Delsora",
+                    "20344|Lalpani",
+                    "20345|Kynrang",
+                    "20346|Mawkaphan",
+                    "20347|Pomblang",
+                    "20348|Lumdiengngan",
+                    "20349|Mawtangor",
+                    "20350|Mawrapat",
+                    "20351|Phlangmawsyrpad",
+                    "20352|Dangar Dombah",
+                    "20353|Domskong",
+                    "20354|Dewsawlia",
+                    "20355|Thieddieng Nongthymmai",
+                    "20356|Sinai Mawshynrut",
+                    "20357|Nonglait",
+                    "20358|Kharabri",
+                    "20359|Dholai Malai",
+                    "20360|Langsymphut",
+                    "40101|Bhattahola Birit",
+                    "40102|Parsauni",
+                    "40103|Moti Tola",
+                    "40104|Mathia",
+                    "40105|Tarkulwa",
+                    "40106|Amaulia",
+                    "40107|Tola Parsauni",
+                    "40108|Kumhia",
+                    "40109|Jura",
+                    "40110|Pakri",
+                    "40111|Ratwal",
+                    "40112|Bishunpurwa",
+                    "40113|Padar Khap",
+                    "40114|Kolhua",
+                    "40115|Tesrahia",
+                    "40116|Banchehri",
+                    "40117|Sisba",
+                    "40118|Bisambharpur",
+                    "40119|Chakhni",
+                    "40120|Bibi Bankatwa",
+                    "40121|Singari- Garhwa",
+                    "40122|Bassganw",
+                    "40123|Majharia",
+                    "40124|Majhauwa",
+                    "40125|Nauda Parsauni",
+                    "40126|Hardinadwa",
+                    "40127|Lagunaha",
+                    "40128|Barganw",
+                    "40129|Raibari Mahuawa",
+                    "40130|Patilar",
+                    "50101|Jagdishpur",
+                    "50102|Malkauli",
+                    "50103|Phul Jharia",
+                    "50104|Tola Mansa Dube",
+                    "50105|Mathauli",
+                    "50106|Masan Dhab",
+                    "50107|Majhariya",
+                    "50108|Tadhwa Nandpur",
+                    "50109|Phulia Khanr",
+                    "50110|Machharganwa",
+                    "50111|Mathia Bandobasti",
+                    "50112|Surajpur",
+                    "50113|Baijua",
+                    "50114|Tola Tumkaraia",
+                    "50115|Tola Motipur",
+                    "50116|Phatu Chhapar",
+                    "50117|Siswa Sarea",
+                    "50118|Bhataulia",
+                    "50119|Sirsia Mathia",
+                    "50120|Bhitaha Nizamat",
+                    "50121|Balua Rampur",
+                    "50122|Tola Malahi",
+                    "50123|Mianapur Dubauli",
+                    "50124|Laukaria",
+                    "50125|Hatsariya",
+                    "50126|Dumaria",
+                    "50127|Baghambarpur",
+                    "50128|Bagahi",
+                    "50129|Patjirwa",
+                    "50130|Bairia",
+                    "60101|Haripur",
+                    "60102|Behra",
+                    "60103|Sargatia",
+                    "60104|Puraina",
+                    "60105|Dhankutwa",
+                    "60106|Baisakhwa",
+                    "60107|Balthar",
+                    "60108|Ghorcharhi",
+                    "60109|Surajpur",
+                    "60110|Sirsiya",
+                    "60111|Bhaunara",
+                    "60112|Parsauni Murli",
+                    "60113|Maswas",
+                    "60114|Shikarpur",
+                    "60115|Jhakhra",
+                    "60116|Jagarnathpur",
+                    "60117|Senuariya",
+                    "60118|Lal Parsa",
+                    "60119|Gauripur",
+                    "60120|Sundargawn",
+                    "60121|Bhawanipur",
+                    "60122|Parsa",
+                    "60123|Gamharia Birnagar",
+                    "60124|Parsauni Ghogha",
+                    "60125|Ekdari Mangalpur",
+                    "60126|Pokharia",
+                    "60127|Ausanpur",
+                    "60128|Sabaithwa",
+                    "60129|Jaisinghpur",
+                    "60130|Sonbarsa",
+                    "60131|Tola Gularia",
+                    "60132|Narkatia",
+                    "60133|Kursi Barwa",
+                    "60134|Mathia",
+                    "60135|Sugaha",
+                    "60136|Bheriharwa",
+                    "60137|Nonia Tola",
+                    "60138|Basantpur",
+                    "60139|Mainpur",
+                    "60140|Patukahia",
+                    "60141|Behri Bankatwa",
+                    "60142|Pasrampur",
+                    "60143|Majharia",
+                    "60144|Patkhaulia",
+                    "60145|Bahuarwa",
+                    "60146|Mahmadwa",
+                    "60147|Chhapainia",
+                    "60148|Bishunpurwa",
+                    "60149|Bhaunri",
+                    "60150|Bahuarwa",
+                    "60151|Luathaha",
+                    "60152|Mujauna",
+                    "60153|Parsotimpur",
+                    "60154|Kangli",
+                    "60155|Indarwa",
+                    "60156|Khapparsa",
+                    "60157|Siswania",
+                    "60158|Bhawanipur Tola Majharia",
+                    "60159|Tola Majharia",
+                    "60160|Masaha",
+                    "60161|Gamvhira jay nagar",
+                    "70101|Halim Nagar",
+                    "70102|New Azadnagar",
+                    "70103|Mumtaz Nagar",
+                    "70104|Bhaji Market",
+                    "70105|Sanjay Nagar",
+                    "70106|Rehmat Pura",
+                    "70107|Shanti Nagar",
+                    "70108|Rehmatpura",
+                    "70109|Piranipada",
+                    "70110|Sahyog Nagar",
+                    "70111|Piranipada",
+                    "70112|Tayba Nagar",
+                    "70113|Bilal Nagar",
+                    "70114|Govind Nagar",
+                    "70115|Bala Compound",
+                    "70116|Nadiyapar",
+                    "70201|New Azadnagar",
+                    "70202|Jabbar Compound",
+                    "70203|Rohidasnagar",
+                    "70204|NOORI NAGAR",
+                    "70205|GAYATRI NAGAR",
+                    "70206|REHMATPURA",
+                    "70301|Fatma Nagar",
+                    "70302|Ummat Nagar",
+                    "70303|Ram Nagar",
+                    "70304|Ansar Mohalla",
+                    "70305|Khandupada",
+                    "70306|Qidwai Nagar",
+                    "70307|Wafa Complex",
+                    "70308|Aampada",
+                    "70309|Shandar Market",
+                    "70310|Sayra Compound",
+                    "70311|FATMANAGAR",
+                    "70312|UMNATNAGAR",
+                    "70313|RAMNAGAR",
+                    "70314|KIDWAI NAGAR",
+                    "70315|WAFA COMPLEX",
+                    "70316|SAYRA COMPOUND",
+                    "70401|Nehrunagar",
+                    "70402|NEHRUNAGAR PHARI",
+                    "70403|NEHRUNAGAR BHAJI MARKET",
+                    "70404|NAVI VASTI BHAJI MARKET",
+                    "70405|RAVJINAGAR",
+                    "70406|NAVI VASTI UPHC ARIA",
+                    "70407|LAMANI VASTI",
+                    "70501|Azminagar",
+                    "70502|Handi Compound",
+                    "70503|Momin Baugh",
+                    "70504|Samrubaugh",
+                    "70505|Karavli Road",
+                    "70506|New Islampura",
+                    "70507|Char Chali",
+                    "70508|Slaughter House",
+                    "70509|Idgah Slum",
+                    "70510|Dhobi Ghat",
+                    "70511|Hamal Wada",
+                    "70512|Dargah Road",
+                    "70513|Hafiz Nagar",
+                    "70514|AZMI NAGAR",
+                    "70515|HANDI COMPOUND",
+                    "70516|MOMIN BAUGH",
+                    "70517|HAFIZ NAGAR",
+                    "70518|DEV NAGAR",
+                    "70519|ASHOK NAGAR",
+                    "70520|KARAVLI ROAD",
+                    "70521|MOHI BARA",
+                    "70601|Patel Nagar",
+                    "70602|Bala Compound",
+                    "70603|Aasif Compund",
+                    "70604|Sayyed Compaund",
+                    "70605|Chavhan Colony",
+                    "70606|Kondachi Wadi",
+                    "70607|Sanghmitra Nagar",
+                    "70608|Kaap Aali",
+                    "70609|Kacheri Pada",
+                    "70610|Ansarnagar",
+                    "70611|Salamatpura",
+                    "70612|Gulzar Nagar",
+                    "70701|Farid Baugh",
+                    "70702|Amina Baugh",
+                    "70703|Barke Compound",
+                    "70704|Bage Firdos",
+                    "70705|Eklak Jhopadpatti",
+                    "70706|Qasai Wada",
+                    "70707|Quresh Nagar",
+                    "70708|Zaitoonpura",
+                    "70709|Ghunghat Nagar",
+                    "70710|HAJI COMPOUND",
+                    "70711|FARID BAUGH-2",
+                    "70712|KHANDU PADA",
+                    "70713|Ansar Mohalla",
+                    "70714|Aampada",
+                    "70801|Sathe Nagar",
+                    "70802|Shivaji Nagar",
+                    "70803|72 Gala",
+                    "70804|Vithal Nagar",
+                    "70805|Madhav Nagar",
+                    "70806|Narkoli Gao",
+                    "70807|Devji Nagar",
+                    "70901|Samadnagar",
+                    "70902|Zaitoonpura",
+                    "70903|Yunus Nagar",
+                    "70904|Jamatkhana",
+                    "70905|Kaptalav Nala",
+                    "70906|Chota Power House",
+                    "70907|SAMRU BAUGH",
+                    "70908|DHOBI GHAT",
+                    "70909|NEW ISLAMPURA",
+                    "70910|BUNDER MOHALLA",
+                    "70911|TANDEL MOHALLA",
+                    "70912|SAUDAGAR MOHALLA",
+                    "70913|BHUSAR MOHALLA",
+                    "70914|IDGAH SLUM",
+                    "70915|MADAR CHILLA",
+                    "71001|Gaibinagar",
+                    "71002|Khancompau nd",
+                    "71003|Mominpura",
+                    "71004|Fandolenagar",
+                    "71005|Ravjinagar",
+                    "71006|Shastrinagar",
+                    "71007|Nehrunagar",
+                    "71008|Hanumantek di",
+                    "71101|BHANDARI KAMP",
+                    "71102|RAHMANIYA KAMP",
+                    "71103|BALAJI NAGAR",
+                    "71104|AJANTHA KAMP",
+                    "71105|ROSHAN BAGH",
+                    "71106|DHOBI TALAB",
+                    "71107|BABU CHUNI",
+                    "888888|Other specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a06",
+        "question": {
+            "english": "A06 Household number"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "a08a",
+        "question": {
+            "english": "Village block"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|intervention",
+                    "2|Control"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "a07",
+        "question": {
+            "english": "A07 Total number of visits made"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "a08",
+        "question": {
+            "english": "A08 Details of visit"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not Available",
+                    "3|Refused (Give reasons)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b01",
+        "question": {
+            "english": "B01 Name of respondent"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b02",
+        "question": {
+            "english": "B02 How old are you (in completed years)?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b03",
+        "question": {
+            "english": "B03 Can you read and write?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Cannot read and write",
+                    "2|Can read only",
+                    "3|Can sign only",
+                    "4|Can read and write"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b04",
+        "question": {
+            "english": "B04 What is the highest level of education you have completed?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|No formal schooling",
+                    "2|Primary and below (standard 1 to 5)",
+                    "3|Middle (standard 6 to 8)",
+                    "4|Secondary (standard 9 and 10)",
+                    "5|Higher Secondary (standard 11 and 12)",
+                    "6|Graduate and above"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b05",
+        "question": {
+            "english": "B05 What is the religion of the head of the household?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Hinduism",
+                    "2|Islam",
+                    "3|Christianity",
+                    "4|Sikhism",
+                    "5|Jainism",
+                    "6|Buddhism",
+                    "7|Niam tynrai",
+                    "88|Other (specify)",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b06",
+        "question": {
+            "english": "B06 Which social group does your family belong to?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Scheduled tribe (ST)",
+                    "2|Scheduled caste (SC)",
+                    "3|Other backward class (OBC)",
+                    "4|General",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b07",
+        "question": {
+            "english": "B07 Which tribe do you belong to?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Garos",
+                    "2|Khasis",
+                    "3|Pnars or Jaintias",
+                    "4|Santal",
+                    "5|Oraon",
+                    "6|Munda",
+                    "7|Birhor",
+                    "8|Parhaiya",
+                    "9|Mal Paharia",
+                    "10|Bhil",
+                    "11|Gond",
+                    "12|Koli Mahadev",
+                    "13|Warli",
+                    "14|Konkana",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b08",
+        "question": {
+            "english": "B08 From which of the following broad activities, maximum income was derived by"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Self-employed in agriculture",
+                    "2|Self-employment in non-agriculture",
+                    "3|Regular wage/salary earning from agriculture",
+                    "4|Regular wage/salary earning from non-agriculture",
+                    "5|Casual labor/daily wage earner in agriculture",
+                    "6|Casual labor in non-agriculture/daily wage earner",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b09",
+        "question": {
+            "english": "B09 What is the type of ration card that your family has?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Antyodaya Anna Yojana (AAY): Yellow",
+                    "2|Below Poverty Line (BPL): Red/Pink",
+                    "3|Above Poverty Line (APL): Blue/White",
+                    "4|Priority House Holds (PHH): Cream/White",
+                    "5|State Food Security Scheme (SFSS)",
+                    "6|Annapurna Scheme (APS): Yellow/Orange",
+                    "7|No ration card"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b10",
+        "question": {
+            "english": "B10 How many children do you have?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b10a",
+        "question": {
+            "english": "B10a Child category"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|0 to 11 months child",
+                    "2|12 to 23 months child"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b12",
+        "question": {
+            "english": "B12 Sex of child"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Female",
+                    "2|Male",
+                    "3|Other"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b13",
+        "question": {
+            "english": "B13 What was the place of birth of your last child?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Public health facility",
+                    "2|Private health facility",
+                    "3|Home"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b13a",
+        "question": {
+            "english": "B13a What motivated you to choose home delivery?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|No transport available at the time of labor",
+                    "2|Long distance to health facility",
+                    "3|Labor pains started suddenly",
+                    "4|No money for transport / hospital expenses",
+                    "5|Family members preferred home delivery",
+                    "6|Husband preferred home delivery",
+                    "7|Previous deliveries happened at home without problems",
+                    "8|Trust in local dai / traditional birth attendant",
+                    "9|Fear of hospital procedures (injections, surgery, cesarean",
+                    "10|Fear of mistreatment / bad behavior at hospital",
+                    "11|No one to accompany me to the facility",
+                    "12|Cultural or religious belief",
+                    "13|Did not feel it was necessary to go to hospital",
+                    "88|Other (Specify: ________)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b14",
+        "question": {
+            "english": "B14 Do you have the MCP/RI (Mother & Child Protection / Routine Immunization) ca"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Yes available",
+                    "2|Yes, but not available",
+                    "3|No"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b15",
+        "question": {
+            "english": "B15 If the card is available but not seen, what is the main reason?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Card with husband/ family member",
+                    "2|ASHA/ANM /AWW has the card",
+                    "88|Others (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b16",
+        "question": {
+            "english": "B16 What is the reason for not having vaccination card?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Card is lost",
+                    "2|Card was not issued at the health center",
+                    "3|Migrated and left in previous house",
+                    "88|Others (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18a1a",
+        "question": {
+            "english": "B18a1a BCG vaccine? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18a2a",
+        "question": {
+            "english": "B18a2a OPV-Birth dose? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18a3a",
+        "question": {
+            "english": "B18a3a Hepatitis B Birth dose? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18b1a",
+        "question": {
+            "english": "B18b1a OPV-1? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18b2a",
+        "question": {
+            "english": "B18b2a Rotavirus-1? /RVV-1 - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18b3a",
+        "question": {
+            "english": "B18b3a fIPV1? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18b4a",
+        "question": {
+            "english": "B18b4a PCV-1? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18b5a",
+        "question": {
+            "english": "B18b5a Pentavalent-1? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18c1a",
+        "question": {
+            "english": "B18c1a OPV-2? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18c2a",
+        "question": {
+            "english": "B18c2a Rotavirus-2? / RVV-2 - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18c3a",
+        "question": {
+            "english": "B18c3a Pentavalent-2? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18d1a",
+        "question": {
+            "english": "B18d1a OPV-3? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18d2a",
+        "question": {
+            "english": "B18d2a Rotavirus-3? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18d3a",
+        "question": {
+            "english": "B18d3a fIPV-2? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18d4a",
+        "question": {
+            "english": "B18d4a PCV-2? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18d5a",
+        "question": {
+            "english": "B18d5a Pentavalent-3? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18e1a",
+        "question": {
+            "english": "B18e1a MR-1? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18e2a",
+        "question": {
+            "english": "B18e2a JE-1? (where applicable) - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18e3a",
+        "question": {
+            "english": "B18e3a PCV- Booster - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18e4a",
+        "question": {
+            "english": "B18e4a fIPV- 3(If applicable) - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18f1a",
+        "question": {
+            "english": "B18f1a DPT Booster-1? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18f2a",
+        "question": {
+            "english": "B18f2a OPV Booster? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18f3a",
+        "question": {
+            "english": "B18f3a MR-2? - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b18f4a",
+        "question": {
+            "english": "B18f4a JE-2? (where applicable) - vaccination date on card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination was given and date is recoded",
+                    "2|Vaccine is not given",
+                    "3|Vaccination was given but no date is recoded",
+                    "4|Partial date on the card",
+                    "6|Child not eligible for vaccine"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19a",
+        "question": {
+            "english": "B19a A BCG vaccination against tuberculosis, that is, an injection in the arm or"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19b",
+        "question": {
+            "english": "B19b Polio vaccine, that is, drops in the mouth, including vaccine received in a"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19c",
+        "question": {
+            "english": "B19c Was the first polio vaccine received in the first two weeks after birth or"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19d",
+        "question": {
+            "english": "B19d How many times was the oral polio vaccine given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|Three times",
+                    "4|Four times",
+                    "5|More than four times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19e",
+        "question": {
+            "english": "B19e A DPT vaccination, that is, an injection given in the thigh or buttocks, so"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19f",
+        "question": {
+            "english": "B19f How many times was a DPT vaccination given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|Three times",
+                    "4|Four times",
+                    "5|More than four times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19g",
+        "question": {
+            "english": "B19g An flPV injection that is given in the upper arm to protect against polio,"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19h",
+        "question": {
+            "english": "B19h How many times was an fIPV vaccination given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|More than two times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19i",
+        "question": {
+            "english": "B19i A pentavalent vaccine/injection that is given in the thigh or buttocks, som"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19j",
+        "question": {
+            "english": "B19j How many times was a pentavalent vaccination given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|Three times",
+                    "4|More than three times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19k",
+        "question": {
+            "english": "B19k Was (Childâ€™s NAME) given an injection at birth to prevent Hepatitis B?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19l",
+        "question": {
+            "english": "B19l Was the first Hepatitis B vaccine received in the first two weeks after bir"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19m",
+        "question": {
+            "english": "B19m How many times was a Hepatitis B vaccination given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|Three times",
+                    "4|Four times",
+                    "5|More than four times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19n",
+        "question": {
+            "english": "B19n Has (Childâ€™s NAME) received a rotavirus vaccine, that is, liquid in the m"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19o",
+        "question": {
+            "english": "B19o How many times was the rotavirus vaccine given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|Three times",
+                    "4|More than three times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19p",
+        "question": {
+            "english": "B19p Did (Childâ€™s NAME) ever receive a JE vaccination against Japanese encepha"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19q",
+        "question": {
+            "english": "B19q How many times was a JE vaccination given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|More than two times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19r",
+        "question": {
+            "english": "B19r Was (Childâ€™s NAME) ever given a measles or MMR injection - that is, a sho"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19s",
+        "question": {
+            "english": "B19s How many times was a measles or MMR vaccination given?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|One time",
+                    "2|Two times",
+                    "3|More than two times",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b19t",
+        "question": {
+            "english": "B19t Was (Childâ€™s NAME) ever given a DPT1 booster dose?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b20",
+        "question": {
+            "english": "B20 If your child has not received any of the vaccines as mentioned above, do yo"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|None",
+                    "2|Some",
+                    "3|All",
+                    "99|Donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "b21",
+        "question": {
+            "english": "B21 You mentioned that [child's name] has not received one or more vaccines. can"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Not aware",
+                    "2|No one contacted",
+                    "3|Concern about loss of work or wages",
+                    "4|Session timing was not suitable",
+                    "5|Vaccination site is too far / transport issues",
+                    "6|Unfriendly behavior of HW",
+                    "7|Session was not organized",
+                    "8|Session found closed",
+                    "9|Vaccine not available",
+                    "10|Child was travelling or away from home",
+                    "11|Child was/is sick",
+                    "12|Fear of multiple injections",
+                    "13|Fear of AEFI",
+                    "14|Adverse media reports",
+                    "15|Family is resistant",
+                    "16|No one to accompany",
+                    "88|Others (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c01",
+        "question": {
+            "english": "C01 How important do you think vaccination is for your child?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Not important",
+                    "2|Somewhat important",
+                    "3|Important"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c01a",
+        "question": {
+            "english": "C01a Why do you think it is not important to get your child vaccinated?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|My child is healthy and does not need vaccines",
+                    "2|I am worried about aftereffects",
+                    "3|I have heard negative information about vaccines",
+                    "4|I do not trust vaccines",
+                    "5|Diseases prevented by vaccines are not common now",
+                    "6|Traditional/home remedies are enough",
+                    "7|My family or elders do not support vaccination",
+                    "8|I do not have enough information about vaccines",
+                    "9|I am not vaccinated so child doesn’t need it too",
+                    "88|Other (specify): __________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c01b",
+        "question": {
+            "english": "C01b If you feel vaccination is important for your child, can you share the bene"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Build children’s immunity",
+                    "2|Protects children from common and serious vaccine-preventabl",
+                    "3|Children grow up healthy and strong",
+                    "4|Reduces the spread of diseases",
+                    "5|Protect the community by reducing disease outbreaks",
+                    "88|Other(specify)________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c02",
+        "question": {
+            "english": "C02 Are you aware of any diseases that can be prevented by vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03",
+        "question": {
+            "english": "C03 Can you tell me which diseases you think vaccines help protect children from"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Tuberculosis",
+                    "2|Hepatitis B",
+                    "3|Poliomyelitis",
+                    "4|Diphtheria",
+                    "5|Pertussis",
+                    "6|Tetanus",
+                    "7|Haemophilus influenzae Type B",
+                    "8|Diarrhoea",
+                    "9|Pneumococcus related diseases",
+                    "10|Measles",
+                    "11|Rubella",
+                    "12|Japanese Encephalitis"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03a",
+        "question": {
+            "english": "C03a What is the symptom for Tuberculosis ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Long-lasting cough",
+                    "2|Fever",
+                    "3|Night sweats",
+                    "4|Blood in cough",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03b",
+        "question": {
+            "english": "C03b What is the symptom for Hepatitis B ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Tiredness",
+                    "2|Dark urine",
+                    "3|Right-side pain",
+                    "4|Don’t know",
+                    "88|Other specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03c",
+        "question": {
+            "english": "C03c What is the symptom for Poliomyelitis ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Fever",
+                    "2|Weak arms or legs",
+                    "3|Difficulty walking",
+                    "4|Sudden limb weakness",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03d",
+        "question": {
+            "english": "C03d What is the symptom for Diphtheria ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Sore throat",
+                    "2|Grey throat layer",
+                    "3|Breathing difficulty",
+                    "4|Swollen neck",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03e",
+        "question": {
+            "english": "C03e What is the symptom for Pertussis ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Severe coughing fits",
+                    "2|Whoop sound while breathing",
+                    "3|Vomiting after cough",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03f",
+        "question": {
+            "english": "C03f What is the symptom for Tetanus ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Stiff jaw (lockjaw)",
+                    "2|Muscle stiffness",
+                    "3|Painful muscle spasms",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03g",
+        "question": {
+            "english": "C03g What is the symptom for Haemophilus influenzae Type B ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|High fever",
+                    "2|Breathing problems",
+                    "3|Neck stiffness",
+                    "4|High-pitched cry",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03h",
+        "question": {
+            "english": "C03h What is the symptom for Diarrhoea ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Loose watery stools",
+                    "2|Dehydration",
+                    "3|Weakness",
+                    "4|Vomiting",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03i",
+        "question": {
+            "english": "C03i What is the symptom for Pneumococcus related diseases ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Cough",
+                    "2|Breathing difficulty",
+                    "3|Chest pain",
+                    "4|Ear discharge",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03j",
+        "question": {
+            "english": "C03j What is the symptom for Measles ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Fever",
+                    "2|Runny nose",
+                    "3|Mouth white spots",
+                    "4|Face-starting rash",
+                    "5|Red watery eyes",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03k",
+        "question": {
+            "english": "C03k What is the symptom for Rubella ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Mild fever",
+                    "2|Pink rash",
+                    "3|Swollen neck node",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c03l",
+        "question": {
+            "english": "C03l What is the symptom for Japanese Encephalitis ?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|High fever",
+                    "2|Headache",
+                    "3|Confusion",
+                    "4|Seizures",
+                    "5|Stiff neck",
+                    "88|Other specify",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c04a",
+        "question": {
+            "english": "C04a Do you think this disease can happen to your child?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Tuberculosis",
+                    "2|Hepatitis B",
+                    "3|Poliomyelitis",
+                    "4|Diphtheria",
+                    "5|Pertussis",
+                    "6|Tetanus",
+                    "7|Haemophilus influenzae Type B",
+                    "8|Diarrhoea",
+                    "9|Pneumococcus related diseases",
+                    "10|Measles",
+                    "11|Rubella",
+                    "12|Japanese Encephalitis",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c04b",
+        "question": {
+            "english": "C04b Do you think these diseases are dangerous for children?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Tuberculosis",
+                    "2|Hepatitis B",
+                    "3|Poliomyelitis",
+                    "4|Diphtheria",
+                    "5|Pertussis",
+                    "6|Tetanus",
+                    "7|Haemophilus influenzae Type B",
+                    "8|Diarrhoea",
+                    "9|Pneumococcus related diseases",
+                    "10|Measles",
+                    "11|Rubella",
+                    "12|Japanese Encephalitis",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c05",
+        "question": {
+            "english": "C05 Do you think any of these diseases can be prevented by vaccination?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Tuberculosis",
+                    "2|Hepatitis B",
+                    "3|Poliomyelitis",
+                    "4|Diphtheria",
+                    "5|Pertussis",
+                    "6|Tetanus",
+                    "7|Haemophilus influenzae Type B",
+                    "8|Diarrhoea",
+                    "9|Pneumococcus related diseases",
+                    "10|Measles",
+                    "11|Rubella",
+                    "12|Japanese Encephalitis",
+                    "99|Don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c06",
+        "question": {
+            "english": "C06 Do you know where to go to get the child vaccinated?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c07",
+        "question": {
+            "english": "C07 Where are children usually taken for their vaccination in your community?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Anganwadi Center (AWC)",
+                    "2|Primary Health Center (PHC)",
+                    "3|Community Health Center (CHC)",
+                    "4|District Hospital",
+                    "5|Private Health Clinic",
+                    "6|Private hospital",
+                    "7|Private individual homes",
+                    "8|Community hall",
+                    "9|Government school",
+                    "88|Other specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c08",
+        "question": {
+            "english": "C08 What is the system for in 5 years how many times vaccination is given to chi"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1 â€“ 5 times",
+                    "2|5 â€“ 10 times",
+                    "3|10 â€“ 15 times",
+                    "4|15 â€“ 20 times",
+                    "5|20 â€“ 25 times",
+                    "6|More than 25 times",
+                    "99|I donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c09",
+        "question": {
+            "english": "C09 In 1 year how many times vaccination is given to the child?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1 time",
+                    "2|2 times",
+                    "3|3 times",
+                    "4|4 times",
+                    "5|5 times",
+                    "6|More than 5 times",
+                    "99|I donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c10",
+        "question": {
+            "english": "C10 How serious concern is it if a child misses or delays vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very serious",
+                    "2|Somewhat serious",
+                    "3|Not very serious",
+                    "4|Not serious at all",
+                    "99|I donâ€™t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c11",
+        "question": {
+            "english": "C11 What problems you think could happen if a child misses or delays vaccination"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|The child may get sick from vaccine-preventable diseases",
+                    "2|The vaccine effectiveness will be reduced",
+                    "3|The child may not be allowed in school/Anganwadi",
+                    "4|It may affect the overall health or development of the child",
+                    "5|It may increase disease risk for other children too",
+                    "7|Nothing will happen",
+                    "88|Other, specify ___________",
+                    "99|I don’t know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c12",
+        "question": {
+            "english": "C12 Do you think there could be some aftereffects post vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c13",
+        "question": {
+            "english": "C13 can you name the after effects that you are aware of?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Fever",
+                    "2|Swelling at the injection site",
+                    "3|Pain at the injection site",
+                    "4|Irritability or crying",
+                    "5|Mild rash",
+                    "6|Tiredness or sleepiness",
+                    "7|Loss of appetite",
+                    "8|Severe allergic reaction (e.g., difficulty breathing)",
+                    "9|Seizures or convulsions",
+                    "10|Redness or hardness at injection site",
+                    "11|Diarrhea or vomiting",
+                    "12|No aftereffects occur",
+                    "88|Other (specify): ___________",
+                    "99|Don't know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c14",
+        "question": {
+            "english": "C14 In your opinion, what are the best ways to manage vaccine related aftereffec"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Give paracetamol or other medicine for fever/pain",
+                    "2|Apply cold compress to the injection site",
+                    "3|Let the child rest or sleep more",
+                    "4|Continue breastfeeding or feeding normally",
+                    "5|Visit a doctor or health facility if aftereffects are severe",
+                    "6|Do nothing; aftereffects go away on their own",
+                    "7|Give home remedies or traditional treatment",
+                    "88|Other (specify): ___________",
+                    "99|Don't know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "c15",
+        "question": {
+            "english": "C15 Who should you contact in case of serious aftereffects?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|ASHA",
+                    "2|ANM/Nurse",
+                    "3|AWW",
+                    "4|Private doctor",
+                    "5|No one",
+                    "6|Traditional healer",
+                    "88|Other (specify): ___________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d01",
+        "question": {
+            "english": "D01 Do you think it is safe to get your child vaccinated?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Not safe at all",
+                    "2|Slightly safe",
+                    "3|Moderately safe",
+                    "4|Very safe",
+                    "5|Completely safe"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d02",
+        "question": {
+            "english": "D02 If you do not feel safe in getting your child vaccinated, then what risks do"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Fear of aftereffects (fever, swelling, pain)",
+                    "2|Fear of serious long-term effects",
+                    "3|Concern about weakening child’s immunity",
+                    "4|Concern about child becoming sick after vaccination",
+                    "5|Fear of overdose due to many vaccines",
+                    "6|No concerns"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d03",
+        "question": {
+            "english": "D03 How effective do you think vaccines are in protecting your child against dis"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Not effective at all",
+                    "2|Moderately effective",
+                    "3|Extremely effective",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d03a",
+        "question": {
+            "english": "D03a How much trust do you have in the quality of vaccines being to your childre"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Complete trust",
+                    "2|Somewhat trust",
+                    "3|Neutral",
+                    "4|Slightly trust",
+                    "5|Do not trust"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d04",
+        "question": {
+            "english": "D04 How worried are you about your child receiving vaccines multiple times in a"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very worried",
+                    "2|Slightly worried",
+                    "3|Not worried at all"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d04a",
+        "question": {
+            "english": "D04a Why do you get worried about your child receiving vaccines multiple times i"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|It gets difficult to remember so many dates",
+                    "2|It gets difficult to take child multiple times",
+                    "3|Wage loss due to multiple dates",
+                    "4|Difficulty to manage family responsibilities",
+                    "5|Someone needs to accompany me each time, which is not always",
+                    "6|Child gets sick every time",
+                    "88|Other specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d05",
+        "question": {
+            "english": "D05 How worried do you feel in getting your child multiple vaccines in one visit"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very worried",
+                    "2|Slightly worried",
+                    "3|Not worried at all"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "d05a",
+        "question": {
+            "english": "D05a Why do you feel worried in getting your child multiple vaccines in one visi"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|I worry that my child’s body cannot handle many vaccines at",
+                    "2|I am afraid of stronger aftereffects when many vaccines are",
+                    "3|I feel giving many injections at one time is too painful",
+                    "4|I am concerned vaccines may react with each other",
+                    "5|Child gets sick",
+                    "88|Other specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e01",
+        "question": {
+            "english": "E01 How confident do you feel in getting your child all the vaccines?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e02",
+        "question": {
+            "english": "E02 How confident are you that you can remember your childâ€™s vaccination dates"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e03",
+        "question": {
+            "english": "E03 On the day of vaccination, do you feel confident in your ability to manage y"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e04",
+        "question": {
+            "english": "E04 How confident do you feel in taking your child to the vaccination site?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e05",
+        "question": {
+            "english": "E05 How confident do you feel in asking any questions about vaccines-related inf"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e06",
+        "question": {
+            "english": "E06 How confident do you feel in sharing your fears or concern regarding childho"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e07",
+        "question": {
+            "english": "E07 How confident do you feel in managing if your child experiences aftereffects"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e08",
+        "question": {
+            "english": "E08 How confident do you feel in making decisions about your childâ€™s vaccinati"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "e09",
+        "question": {
+            "english": "E09 How confident do you feel in participating in joint decision making with you"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|1- Not confident at all",
+                    "2|2- Somewhat unconfident",
+                    "3|3- Neutral / neither confident nor unconfident",
+                    "4|4- Somewhat confident",
+                    "5|5- Very confident"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f01",
+        "question": {
+            "english": "F01 In your family have you ever discussed about the childâ€™s vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f02",
+        "question": {
+            "english": "F02 In a family, who do you think is primarily responsible for getting the child"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Only Motherâ€™s responsibility",
+                    "2|Ony Fatherâ€™s responsibility",
+                    "3|Both parentsâ€™ responsibility",
+                    "4|Familyâ€™s responsibility",
+                    "5|No oneâ€™s responsibility"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f03",
+        "question": {
+            "english": "F03 How supportive is your family to get the child vaccinated?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Completely supportive",
+                    "2|Slightly supportive",
+                    "3|Moderately supportive",
+                    "4|Not supportive",
+                    "5|Neutral"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f04",
+        "question": {
+            "english": "F04 What type of assistance does your family provide for your childâ€™s immuniza"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Arrange or pay for transport",
+                    "2|Provide money for vaccination-related expenses",
+                    "3|Accompany the mother to the vaccination site",
+                    "4|Take the child to the vaccination site on behalf of the moth",
+                    "5|Help with household chores so that mother could go to vaccin",
+                    "6|Remind about child’s upcoming vaccination due date",
+                    "7|Receive no assistance"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f05",
+        "question": {
+            "english": "F05 In your family, who usually makes the final decision about your childâ€™s va"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Father",
+                    "2|Mother",
+                    "3|Both jointly",
+                    "4|Mother-in-law/ Paternal grandmother",
+                    "5|Father-in-law/Paternal grandfather",
+                    "6|Maternal grandmother",
+                    "7|Paternal grandfather",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f06",
+        "question": {
+            "english": "F06 If there is a difference of opinion about vaccinating the child, whose decis"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Father",
+                    "2|Mother",
+                    "3|Both jointly",
+                    "4|Mother-in-law/ Paternal grandmother",
+                    "5|Father-in-law/Paternal grandfather",
+                    "6|Maternal grandmother",
+                    "7|Paternal grandfather",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f07",
+        "question": {
+            "english": "F07 If it was time for your child to get vaccinated, would you need permission t"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f08",
+        "question": {
+            "english": "F08 From whom do you take permission?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Father",
+                    "2|Mother-in-law/ Paternal grandmother",
+                    "3|Father-in-law/Paternal grandfather",
+                    "4|Maternal grandmother",
+                    "5|Paternal grandfather",
+                    "6|No one",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f09",
+        "question": {
+            "english": "F09 Who in your family is mainly responsible for keeping track of the vaccinatio"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Mother",
+                    "2|Father",
+                    "3|Mother-in-law/ Paternal grandmother",
+                    "4|Father-in-law/Paternal grandfather",
+                    "5|Other female adult",
+                    "6|Other male adult",
+                    "7|Shared equally between parents",
+                    "8|Older sibling",
+                    "9|Maternal grandmother",
+                    "10|Paternal grandfather",
+                    "88|Other (specify): ________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f10",
+        "question": {
+            "english": "F10 Have you and your husband discussed about your childâ€™s vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f11",
+        "question": {
+            "english": "F11 In which ways have your husband helped with your childâ€™s vaccination?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Arrange or pay for transport",
+                    "2|Provided money for vaccination-related expenses",
+                    "3|Accompany the mother to the vaccination site",
+                    "4|Take the child to the vaccination site on behalf of the moth",
+                    "5|Help with household chores so that mother could go to vaccin",
+                    "6|Remind about child’s upcoming vaccination due date",
+                    "7|Receive no assistance"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "f12",
+        "question": {
+            "english": "F12 During your last visit, who accompanied you to the immunization site?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Father",
+                    "2|Mother-in-law/ Paternal grandmother",
+                    "3|Other female adult",
+                    "4|Other male adult",
+                    "5|No one",
+                    "6|Maternal grandmother",
+                    "7|Not vaccinating the child"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g01",
+        "question": {
+            "english": "G01 Have you ever been contacted/visited by any healthworker(ASHA,ANM,AWW) about"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g02",
+        "question": {
+            "english": "G02 Who reached out to you?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|ASHA",
+                    "2|ANM/Nurse",
+                    "3|AWW",
+                    "88|Other specify:"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g03",
+        "question": {
+            "english": "G03 when was the last time?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|This month",
+                    "2|One month back",
+                    "3|Three months back",
+                    "4|Six months back",
+                    "5|More than six months back"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g04",
+        "question": {
+            "english": "G04 During the last home visit/conversation did ASHA provide you with any inform"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g05",
+        "question": {
+            "english": "G05 what information did you receive?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Benefits of vaccination",
+                    "2|Benefits of Timely and Complete Immunization",
+                    "3|National Immunization Schedule (First Year)",
+                    "4|Importance of MCP card for vaccination",
+                    "6|Next vaccine due date",
+                    "7|Immunization site and time",
+                    "88|Others (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g06",
+        "question": {
+            "english": "G06 Were you able to clearly understand the information she gave you about immun"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g07",
+        "question": {
+            "english": "G07 why was it unclear for you?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Fast delivery of information",
+                    "2|Complex language or terminology",
+                    "3|Information overload",
+                    "4|Respondent/Caregiver not feeling well",
+                    "5|Lack of clarity in explanation",
+                    "6|Insufficient examples or visual aids",
+                    "7|Information not delivered in local language/dialect",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g08",
+        "question": {
+            "english": "G08 Did she show or use any materials during the discussions?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Flip charts",
+                    "2|Pamphlets",
+                    "3|Videos",
+                    "4|Audio",
+                    "5|None",
+                    "88|Others (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g09",
+        "question": {
+            "english": "G09 Are you able to ask questions to ASHA?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes always",
+                    "2|Yes, sometimes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g09a",
+        "question": {
+            "english": "G09a Is AHSA easily available if you need any help?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes always",
+                    "2|Yes, sometimes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g10",
+        "question": {
+            "english": "G10 why?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Lack of contact information",
+                    "2|ASHA’s limited availability",
+                    "3|Poor responsiveness",
+                    "4|Personal discomfort or hesitation",
+                    "5|Family or household restrictions",
+                    "6|Logistical barriers – Distance, travel issues, or difficulty",
+                    "7|Phone/network issues – Unable to connect due to technical li",
+                    "8|Preference for alternative sources",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g11",
+        "question": {
+            "english": "G11 When you were getting your child vaccinated, what information did the health"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccine given & disease prevented",
+                    "2|Next dose date for the child",
+                    "3|Next immunization session place",
+                    "4|Information on vaccine aftereffects and management)",
+                    "5|Importance of MCP card",
+                    "6|Nutrition/other advice (specify)",
+                    "7|No information provided",
+                    "8|Not take child for vaccination",
+                    "88|Other (specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12a",
+        "question": {
+            "english": "G12a During my last visit, the health worker listened carefully to my concerns a"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12b",
+        "question": {
+            "english": "G12b During my last visit, I was able to easily ask questions about my childâ€™s"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12c",
+        "question": {
+            "english": "G12c During my last visit, the health worker explained things in a way that was"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12d",
+        "question": {
+            "english": "G12d During my last visit, I felt that the health worker spoke politely with me."
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12e",
+        "question": {
+            "english": "G12e During my last visit, the health worker shouted at or scolded me"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12f",
+        "question": {
+            "english": "G12f During my last visit, the health workers handled my child with care while t"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12g",
+        "question": {
+            "english": "G12g During my last visit, healthworker valued my opinions during the discussion"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12h",
+        "question": {
+            "english": "G12h During my last visit, I did not feel comfortable talking to the health work"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g12i",
+        "question": {
+            "english": "G12i During my last visit, health worker treated me fairly, without any discrimi"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Strongly Disagree",
+                    "2|Disagree",
+                    "3|Neither Agree nor Disagree (or Undecided)",
+                    "4|Agree",
+                    "5|Strongly Agree"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g13",
+        "question": {
+            "english": "G13 After you came from the vaccination site, did ASHA or ANM visit or call you"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Yes visited",
+                    "2|Yes called",
+                    "3|Did not contact",
+                    "4|Not take child for vaccination"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g14",
+        "question": {
+            "english": "G14 can you share the information she shared with you?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Information on managing minor aftereffects (like fever/soren",
+                    "2|Possible aftereffects like fever or soreness",
+                    "3|Next due date",
+                    "4|Importance of continued immunization",
+                    "5|Warning signs that need immediate medical attention (e.g., h",
+                    "6|Whom to contact in case of warning signs",
+                    "7|Where to visit in case of warning signs",
+                    "88|Other specify:"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g15",
+        "question": {
+            "english": "G15 How much do you trust the information provided to you by the health worker r"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Complete trust",
+                    "2|Somewhat trust",
+                    "3|Neutral",
+                    "4|Slightly trust",
+                    "5|Do not trust"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g16",
+        "question": {
+            "english": "G16 If not, why?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Health workers do not explain things clearly",
+                    "2|The information given changes or is inconsistent",
+                    "3|Health workers cannot answer my questions properly",
+                    "4|Health worker does not have enough knowledge about vaccines",
+                    "5|Health workers only tell us what to do, not why it is import",
+                    "6|I have heard different information from family or community",
+                    "7|Health workers do not spend enough time talking to me",
+                    "8|I am worried about vaccine aftereffects and the health worke",
+                    "9|Health worker generally not polite",
+                    "10|I found health workers generally maintain distance due to so",
+                    "88|Other (specify):"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g17",
+        "question": {
+            "english": "G17 All the communication that you had with your health worker, did it happen in"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "g18",
+        "question": {
+            "english": "G18 What challenges did you face due to communication being in a different langu"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Did not fully understand the vaccination information",
+                    "2|Could understand some parts, but not everything",
+                    "3|Had doubts or confusion after the interaction",
+                    "4|Needed to ask someone else to explain later",
+                    "5|Felt less confident about vaccinating my child",
+                    "6|Missed or delayed a vaccination",
+                    "7|Could not ask questions because of the language difference",
+                    "8|Did not cause any problem",
+                    "88|Other (specify):"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h01",
+        "question": {
+            "english": "H01 Thank you for sharing about your experience. I want to now ask more about th"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|0 â€“ 15 minutes",
+                    "2|15 â€“ 30 minutes",
+                    "3|30 â€“ 45 minutes",
+                    "4|45 minutes â€“ 1 hour",
+                    "5|More than 1 hour",
+                    "6|Did not visit"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h02",
+        "question": {
+            "english": "H02 How easy was it to get vaccination services for your child? Would you sayâ€¦"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Not Easy",
+                    "2|Easy",
+                    "3|Very easy"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h03",
+        "question": {
+            "english": "H03 How convenient were the vaccination session timings for you to bring your ch"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very convenient",
+                    "2|Slightly convenient",
+                    "3|Not convenient"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h04",
+        "question": {
+            "english": "H04 How far is the vaccination site from your home?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|0 â€“ 500 meter",
+                    "2|500 meter â€“ 1 km",
+                    "3|1km â€“ 1.5 km",
+                    "4|1.5 km â€“ 2 km",
+                    "5|More than 2 km"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h05",
+        "question": {
+            "english": "H05 What mode of transport did you use to reach the site?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Walked to site",
+                    "2|Took auto",
+                    "3|Took bus",
+                    "4|Personal transport",
+                    "88|Other specify"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h06",
+        "question": {
+            "english": "H06 Did you see any of these immunization-related materials displayed at the vac"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Posters on vaccination benefits",
+                    "2|Charts showing vaccination schedule",
+                    "3|Posters on aftereffects after vaccination",
+                    "4|Banners or wall paintings",
+                    "5|Did not see any"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h07",
+        "question": {
+            "english": "H07 During your most recent visit for your childâ€™s vaccination, how long did y"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|0 â€“ 15 minutes",
+                    "2|15 â€“ 30 minutes",
+                    "3|30 â€“ 45 minutes",
+                    "4|45 minutes â€“ 1 hour",
+                    "5|More than 1 hour",
+                    "6|Did not visit"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h08",
+        "question": {
+            "english": "H08 During your most recent visit for your childâ€™s vaccination, approximately"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|0 â€“ 15 minutes",
+                    "2|15 â€“ 30 minutes",
+                    "3|30 â€“ 45 minutes",
+                    "4|45 minutes â€“ 1 hour",
+                    "5|More than 1 hour",
+                    "6|Did not visit"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h09",
+        "question": {
+            "english": "H09 Were you satisfied with the time ANM spent with you?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h10",
+        "question": {
+            "english": "H10 Why were you not satisfied with the time given to you by the ANM?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Consultation was too short",
+                    "2|Health worker was in a hurry",
+                    "3|Did not get enough time to ask questions",
+                    "4|Questions were not answered properly",
+                    "5|Important information was skipped or not explained",
+                    "6|The health worker spoke very fast",
+                    "7|Health worker had many other people to attend to",
+                    "8|Interaction was interrupted or distracted",
+                    "9|Felt rushed to finish quickly",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h11a",
+        "question": {
+            "english": "H11a Drinking water"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h11b",
+        "question": {
+            "english": "H11b Shaded waiting area"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h11c",
+        "question": {
+            "english": "H11c Seating arrangement for waiting"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h11d",
+        "question": {
+            "english": "H11d Seating arrangement for counselling session"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h11e",
+        "question": {
+            "english": "H11e Child friendly amenities (toys/engagement material)"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h11f",
+        "question": {
+            "english": "H11f Immunization related material printed ( banner, flip chart, poster, wall pa"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h11g",
+        "question": {
+            "english": "H11g Private space (division with curtain) for feeding child"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available",
+                    "2|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h12a",
+        "question": {
+            "english": "H12a Electricity"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available and functional",
+                    "2|Available and not functional",
+                    "3|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h12b",
+        "question": {
+            "english": "H12b Toilet"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available and functional",
+                    "2|Available and not functional",
+                    "3|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h12c",
+        "question": {
+            "english": "H12c Fan"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Available and functional",
+                    "2|Available and not functional",
+                    "3|Not available"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h13",
+        "question": {
+            "english": "H13 If the toilets were available at the vaccination site, then were you able to"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "2|Did not require access"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h13a",
+        "question": {
+            "english": "H13a Why were you not able to access them?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Toilet was locked",
+                    "2|Toilet was not clean or usable",
+                    "3|No water available",
+                    "4|Too far from the vaccination area",
+                    "5|Did not know where the toilet was",
+                    "6|Toilet was being used by staff only",
+                    "7|Crowded / long waiting time",
+                    "8|Toilet did not feel safe or private",
+                    "9|Not allowed to use the toilet",
+                    "88|Other (specify):"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h14",
+        "question": {
+            "english": "H14 If the child friendly amenities (toys, child engagement) were available at t"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "2|Did not require access"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h15",
+        "question": {
+            "english": "H15 Overall if you rate your experience of getting your child vaccinated, how wo"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very good",
+                    "2|Good",
+                    "3|Average",
+                    "4|Poor",
+                    "5|Very poor"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "h16",
+        "question": {
+            "english": "H16 What do you think needs to be improved to make the vaccination experience be"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Nothing, you are satisfied,",
+                    "2|Make sure vaccine always available,",
+                    "3|The clinic should open on time,",
+                    "4|Waiting times should not be long,",
+                    "5|The clinic should be clean,",
+                    "6|Staff should be properly trained,",
+                    "7|Staff should be respectful,",
+                    "8|Staff should spend enough time with people",
+                    "88|Others, specify_________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i01",
+        "question": {
+            "english": "I01 When is the next vaccination for your child due?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|In less than one month",
+                    "2|In 1 to 2 months",
+                    "3|In 3 to 4 months",
+                    "4|In 5 to 6 months",
+                    "5|Later than six months",
+                    "6|All vaccines are done",
+                    "99|Don't know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i02",
+        "question": {
+            "english": "I02 How do you know the due date for next vaccine?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Check MCP card",
+                    "2|ASHA reminds during home visits",
+                    "3|ASHA calls/sends a message",
+                    "88|Other (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i03",
+        "question": {
+            "english": "I03 Are you planning to take your child to take the next vaccination due?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "2|Maybe"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i04",
+        "question": {
+            "english": "I04 If you do not intend to vaccinate or only intend to give some vaccines, what"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Fear of aftereffects",
+                    "2|Belief that vaccines are unnecessary",
+                    "3|Religious or cultural beliefs",
+                    "4|Lack of trust in the healthcare system",
+                    "88|Other (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "calc_nvacc1",
+        "question": {
+            "english": "calc_nvacc1"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "i05",
+        "question": {
+            "english": "I05 For the vaccinations that were missed when do you plan to take your child fo"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|At the next scheduled date",
+                    "2|Within the next month",
+                    "3|When convenient",
+                    "4|Not sure",
+                    "5|Do not plan to vaccinate",
+                    "88|Others (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i06a",
+        "question": {
+            "english": "I06a Take your child for any vaccination in the future"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very unlikely",
+                    "2|Somewhat unlikely",
+                    "3|Neither likely nor unlikely",
+                    "4|Somewhat likely",
+                    "5|Very likely"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i06b",
+        "question": {
+            "english": "I06b Complete all recommended vaccine doses"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very unlikely",
+                    "2|Somewhat unlikely",
+                    "3|Neither likely nor unlikely",
+                    "4|Somewhat likely",
+                    "5|Very likely"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i06c",
+        "question": {
+            "english": "I06c Recommend vaccination to other parents"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Very unlikely",
+                    "2|Somewhat unlikely",
+                    "3|Neither likely nor unlikely",
+                    "4|Somewhat likely",
+                    "5|Very likely"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i07a",
+        "question": {
+            "english": "I07a Checked your child's vaccination card"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i07b",
+        "question": {
+            "english": "I07b Discussed vaccination with a health worker"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i07c",
+        "question": {
+            "english": "I07c Visited a vaccination center"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i08",
+        "question": {
+            "english": "I08 Has your child ever missed a scheduled vaccination, either on the date told"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes",
+                    "99|Donâ€™t Know"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i09",
+        "question": {
+            "english": "I09 Did you reschedule the missed vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Yes, immediately (within 1 week)",
+                    "2|Yes, within 1 month",
+                    "3|Yes, after more than 1 month",
+                    "4|No, did not reschedule"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "i10",
+        "question": {
+            "english": "I10 What encouraged or motivated you to take your child for vaccination after it"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Follow-up visit from health worker",
+                    "2|Phone call reminder from health worker",
+                    "3|Support from family members for childcare/household work",
+                    "4|Help with transportation to vaccination center",
+                    "5|More convenient clinic timing",
+                    "6|Better understanding of vaccine importance",
+                    "7|Availability of vaccine at center",
+                    "8|Reduced workload/got time off",
+                    "88|Others (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j01",
+        "question": {
+            "english": "J01 When was the first time you heard about vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|During pregnancy",
+                    "2|After the child was born",
+                    "3|When child was taken for the first vaccination",
+                    "4|During an immunization camp or outreach session",
+                    "5|When the child became sick",
+                    "6|Donâ€™t remember",
+                    "88|Others (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j02",
+        "question": {
+            "english": "J02 Who informed you for the first time about vaccination?"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|ASHA",
+                    "2|ANM / Nurse",
+                    "3|Anganwadi worker",
+                    "4|Doctor",
+                    "5|Community volunteer / mobilizer",
+                    "6|Family member (husband, mother-in-law, etc.)",
+                    "7|Neighbor / friend",
+                    "8|School teacher",
+                    "9|Religious or community leader",
+                    "88|Other (specify): ___________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j03",
+        "question": {
+            "english": "J03 Where did you get the information?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Health facility (PHC, sub-center, hospital)",
+                    "2|Anganwadi center",
+                    "3|Home visit by health worker",
+                    "4|Immunization camp / outreach site",
+                    "5|Community meeting",
+                    "6|Television",
+                    "7|Radio",
+                    "8|Mobile phone (SMS, WhatsApp, calls)",
+                    "9|Posters, banners, or wall paintings",
+                    "88|Other (specify): ___________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j04",
+        "question": {
+            "english": "J04 In the last six months, which of these sources have provided you with inform"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Family members",
+                    "2|Friends/neighbors",
+                    "3|Religious leaders",
+                    "4|Community leaders/village head",
+                    "5|ASHA (frontline health worker)",
+                    "6|Anganwadi worker",
+                    "7|Doctor/Medical practitioners at healthcare centers",
+                    "8|Self Help Group meeting",
+                    "9|Community meeting/event",
+                    "10|School event",
+                    "11|Religious gathering",
+                    "12|Home visit by health worker",
+                    "13|Television",
+                    "14|Radio",
+                    "15|Newspaper/magazine",
+                    "16|Wall painting/poster/leaflet",
+                    "17|WhatsApp",
+                    "18|Facebook,",
+                    "19|Phone call/SMS",
+                    "20|Loudspeaker announcement",
+                    "21|Youtube",
+                    "22|Instagram",
+                    "23|Twitter / X",
+                    "24|Telegram",
+                    "88|Others, specify_________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j05",
+        "question": {
+            "english": "J05 Among the information sources you listed which is the source do you access t"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Family members",
+                    "2|Friends/neighbors",
+                    "3|Religious leaders",
+                    "4|Community leaders/village head",
+                    "5|ASHA (frontline health worker)",
+                    "6|Anganwadi worker",
+                    "7|Doctor/Medical practitioners at healthcare centers",
+                    "8|Self Help Group meeting",
+                    "9|Community meeting/event",
+                    "10|School event",
+                    "11|Religious gathering",
+                    "12|Home visit by health worker",
+                    "13|Television",
+                    "14|Radio",
+                    "15|Newspaper/magazine",
+                    "16|Wall painting/poster/leaflet",
+                    "17|WhatsApp",
+                    "18|Facebook,",
+                    "19|Phone call/SMS",
+                    "20|Loudspeaker announcement",
+                    "21|Youtube",
+                    "22|Instagram",
+                    "23|Twitter / X",
+                    "24|Telegram",
+                    "88|Others, specify_________"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j06",
+        "question": {
+            "english": "J06 In past 6 months have you attended any community-based events where vaccinat"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j07",
+        "question": {
+            "english": "J07 what kind of community-based events have you attended?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Community meetings",
+                    "2|Street Plays",
+                    "3|Theatre",
+                    "4|Kiosks",
+                    "88|Others (Specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j08",
+        "question": {
+            "english": "J08 What key messages due you recall from the community-based activities?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Benefits of vaccination",
+                    "2|Benefits of Timely and Complete Immunization",
+                    "3|National Immunization Schedule (First Year)",
+                    "4|Importance of MCP card for vaccination",
+                    "5|Minor aftereffects of vaccination",
+                    "6|Next vaccine schedule",
+                    "7|Don’t remember",
+                    "88|Others (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j09",
+        "question": {
+            "english": "J09 Do you recall any key messages on family level decision making on vaccinatio"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j10",
+        "question": {
+            "english": "J10 Can you explain the key messages you have learnt?"
+        },
+        "qtype": "mcq",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "1|Vaccination decisions should be taken together by family mem",
+                    "2|Both parents and elders should support timely vaccination",
+                    "3|Family support helps children complete all vaccine doses",
+                    "4|Discussing vaccination in the family helps clear doubts and",
+                    "5|Listening to advice from health workers helps families make",
+                    "6|Timely vaccination is a shared responsibility of the family",
+                    "7|Families should support mothers to take children for vaccina",
+                    "88|Others (specify)"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j11",
+        "question": {
+            "english": "J11 Have you seen any posters/banners/infographics or any other printed material"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|No",
+                    "1|Yes"
+                ]
+            }
+        }
+    },
+    {
+        "qid": "j12",
+        "question": {
+            "english": "J12 can you recall any vaccination messages from those printed materials?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "calc_etime1",
+        "question": {
+            "english": "calc_etime1"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "formdef_version",
+        "question": {
+            "english": "Form version used on device"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "key",
+        "question": {
+            "english": "Unique submission ID"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "submissiondate",
+        "question": {
+            "english": "Date/time submitted"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "starttime",
+        "question": {
+            "english": "starttime"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "endtime",
+        "question": {
+            "english": "endtime"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b11",
+        "question": {
+            "english": "B11 What is the birth date of your youngest child [Date of birth of the child wh"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18a1",
+        "question": {
+            "english": "B18a1 BCG vaccine?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18a2",
+        "question": {
+            "english": "B18a2 OPV-Birth dose?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18a3",
+        "question": {
+            "english": "B18a3 Hepatitis B Birth dose?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18b1",
+        "question": {
+            "english": "B18b1 OPV-1?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18b2",
+        "question": {
+            "english": "B18b2 Rotavirus-1? /RVV-1"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18b3",
+        "question": {
+            "english": "B18b3 fIPV1?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18b4",
+        "question": {
+            "english": "B18b4 PCV-1?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18b5",
+        "question": {
+            "english": "B18b5 Pentavalent-1?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18c1",
+        "question": {
+            "english": "B18c1 OPV-2?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18c2",
+        "question": {
+            "english": "B18c2 Rotavirus-2? / RVV-2"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18c3",
+        "question": {
+            "english": "B18c3 Pentavalent-2?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18d1",
+        "question": {
+            "english": "B18d1 OPV-3?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18d2",
+        "question": {
+            "english": "B18d2 Rotavirus-3?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18d3",
+        "question": {
+            "english": "B18d3 fIPV-2?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18d4",
+        "question": {
+            "english": "B18d4 PCV-2?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18d5",
+        "question": {
+            "english": "B18d5 Pentavalent-3?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18e1",
+        "question": {
+            "english": "B18e1 MR-1?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18e2",
+        "question": {
+            "english": "B18e2 JE-1? (where applicable)"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18e3",
+        "question": {
+            "english": "B18e3 PCV- Booster"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18e4",
+        "question": {
+            "english": "B18e4 fIPV- 3(If applicable)"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18f1",
+        "question": {
+            "english": "B18f1 DPT Booster-1?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18f2",
+        "question": {
+            "english": "B18f2 OPV Booster?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18f3",
+        "question": {
+            "english": "B18f3 MR-2?"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "b18f4",
+        "question": {
+            "english": "B18f4 JE-2? (where applicable)"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "hid",
+        "question": {
+            "english": "hid"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "vill3",
+        "question": {
+            "english": "vill3"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "ovweight",
+        "question": {
+            "english": "ovweight"
+        },
+        "qtype": "stextbox",
+        "ans_json_data": null
+    },
+    {
+        "qid": "intervention",
+        "question": {
+            "english": "intervention"
+        },
+        "qtype": "radio",
+        "ans_json_data": {
+            "english": {
+                "answer": [
+                    "0|control",
+                    "1|Intervention"
+                ]
+            }
+        }
+    }
+]
